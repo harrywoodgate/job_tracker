@@ -1,11 +1,13 @@
 import App from "./App.tsx";
-import Login from "./components/Login.tsx";
-import Signup from "./components/Signup.tsx";
+import Login from "./components/login/Login.tsx";
+import Signup from "./components/signup/Signup.tsx";
+import Dashboard from "./components/dashboard/Dashboard.tsx";
+import ProtectedRoute from "./components/ProtectedRoute.tsx";
 
 type route = {
-  path: string,
-  element: React.JSX.Element
-}
+  path: string;
+  element: React.JSX.Element;
+};
 
 const routes: route[] = [
   {
@@ -13,12 +15,20 @@ const routes: route[] = [
     element: <App />,
   },
   {
-    path: "/login",
+    path: "login",
     element: <Login />,
   },
   {
-    path: "/signup",
+    path: "signup",
     element: <Signup />,
+  },
+  {
+    path: "dashboard",
+    element: (
+      <ProtectedRoute>
+        <Dashboard />
+      </ProtectedRoute>
+    ),
   },
 ];
 
