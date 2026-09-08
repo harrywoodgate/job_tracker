@@ -5,6 +5,7 @@ import Dashboard from "./components/dashboard/Dashboard.tsx";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
 import Applications from "./components/dashboard/applications/Applications.tsx";
 import UserDashboard from "./components/dashboard/user_dashboard/UserDashboard.tsx";
+import Settings from "./components/dashboard/Settings.tsx";
 
 type route = {
   path: string;
@@ -36,6 +37,7 @@ const routes: route[] = [
     children: [
       { path: "userDashboard", element: <UserDashboard /> },
       { path: "applications", element: <Applications /> },
+      { path: "settings", element: <Settings /> },
     ],
   },
 ];
