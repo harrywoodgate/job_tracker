@@ -3,14 +3,17 @@ import { useState } from "react";
 export default function NewApplicationForm({
   active,
   setActive,
+  status,
+  setStatus,
 }: {
   active: boolean;
   setActive: React.Dispatch<React.SetStateAction<boolean>>;
+  status: string;
+  setStatus: React.Dispatch<React.SetStateAction<string>>
 }) {
   const [jobTitle, setJobTitle] = useState("");
   const [company, setCompany] = useState("");
   const [jobType, setJobType] = useState("");
-  const [status, setStatus] = useState("applied");
   const [date, setDate] = useState("");
 
   return (

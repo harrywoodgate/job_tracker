@@ -1,9 +1,10 @@
-import NewApplicationForm from "./NewApplicationForm.tsx";
-import { useState } from "react";
-
-export default function ApplicationsHeader() {
-  const [formActive, setFormActive] = useState(false);
-
+export default function ApplicationsHeader({
+  setFormActive,
+  setStatus,
+}: {
+  setFormActive: React.Dispatch<React.SetStateAction<boolean>>;
+  setStatus: React.Dispatch<React.SetStateAction<string>>;
+}) {
   return (
     <div className="flex justify-between items-center">
       <div className="flex flex-col gap-y-1">
@@ -14,7 +15,9 @@ export default function ApplicationsHeader() {
       </div>
       <button
         className="flex cursor-pointer gap-x-1 bg-primary-blue text-white text-sm h-min py-2 px-3 rounded-md"
-        onClick={() => setFormActive(true)}
+        onClick={() => {
+          setStatus("applied")
+          setFormActive(true)}}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -25,7 +28,6 @@ export default function ApplicationsHeader() {
         </svg>
         <span>New Application</span>
       </button>
-      <NewApplicationForm active={formActive} setActive={setFormActive} />
     </div>
   );
 }
