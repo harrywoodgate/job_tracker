@@ -1,4 +1,9 @@
+import NewApplicationForm from "./NewApplicationForm.tsx";
+import { useState } from "react";
+
 export default function ApplicationsHeader() {
+  const [formActive, setFormActive] = useState(false);
+
   return (
     <div className="flex justify-between items-center">
       <div className="flex flex-col gap-y-1">
@@ -7,7 +12,10 @@ export default function ApplicationsHeader() {
           Track and manage all your job applications
         </p>
       </div>
-      <button className="flex cursor-pointer gap-x-1 bg-primary-blue text-white text-sm h-min py-2 px-3 rounded-md">
+      <button
+        className="flex cursor-pointer gap-x-1 bg-primary-blue text-white text-sm h-min py-2 px-3 rounded-md"
+        onClick={() => setFormActive(true)}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -17,6 +25,7 @@ export default function ApplicationsHeader() {
         </svg>
         <span>New Application</span>
       </button>
+      <NewApplicationForm active={formActive} setActive={setFormActive} />
     </div>
   );
 }
