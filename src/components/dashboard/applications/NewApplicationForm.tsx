@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useManageApplications from "../../../hooks/useManageApplications.ts";
 
 export default function NewApplicationForm({
   active,
@@ -16,6 +17,8 @@ export default function NewApplicationForm({
   const [jobType, setJobType] = useState("");
   const [date, setDate] = useState("");
 
+  const {addApplication} = useManageApplications();
+
   return (
     <div
       className={
@@ -25,8 +28,13 @@ export default function NewApplicationForm({
       }
     >
       <div className="bg-white p-6 rounded-md">
-        <form className="flex flex-col gap-y-4">
-          <div className="flex justify-between">
+        <form className="flex flex-col gap-y-4" onSubmit={(e) => addApplication(e, {
+          title: jobTitle,
+          company: company,
+          status: status,
+          [status]: date,
+        })}>
+          <div className="flex justify-between items-start">
             <div className="flex flex-col gap-y-1">
               <h1 className="font-bold text-xl">Add new job</h1>
               <p className="text-gray text-xs">
@@ -34,12 +42,14 @@ export default function NewApplicationForm({
                 tracker
               </p>
             </div>
-            <div
-              className="cursor-pointer text-gray"
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              className="fill-gray w-[20px] cursor-pointer"
               onClick={() => setActive(false)}
             >
-              X
-            </div>
+              <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+            </svg>
           </div>
           <div className="flex gap-x-6 mt-4">
             <label
@@ -186,8 +196,10 @@ export default function NewApplicationForm({
             />
           </label>
           <div className="flex justify-between mt-2">
-            <button className="bg-white font-semibold text-gray border-1 border-gray-200 px-4 py-2 rounded-md text-xs cursor-pointer"
-            onClick={() => setActive(false)}>
+            <button
+              className="bg-white font-semibold text-gray border-1 border-gray-200 px-4 py-2 rounded-md text-xs cursor-pointer"
+              onClick={() => setActive(false)}
+            >
               Cancel
             </button>
             <button
