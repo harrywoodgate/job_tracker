@@ -1,5 +1,6 @@
 import { useState } from "react";
-import useManageApplications from "../../../hooks/useManageApplications.ts";
+import { useOutletContext } from "react-router";
+import type { outletContext } from "../../../types/outletContext";
 
 export default function NewApplicationForm({
   active,
@@ -17,7 +18,7 @@ export default function NewApplicationForm({
   const [jobType, setJobType] = useState("");
   const [date, setDate] = useState("");
 
-  const {addApplication} = useManageApplications();
+  const { addApplication } = useOutletContext<outletContext>();
 
   return (
     <div
@@ -28,12 +29,18 @@ export default function NewApplicationForm({
       }
     >
       <div className="bg-white p-6 rounded-md">
-        <form className="flex flex-col gap-y-4" onSubmit={(e) => addApplication(e, {
-          title: jobTitle,
-          company: company,
-          status: status,
-          [status]: date,
-        })}>
+        <form
+          className="flex flex-col gap-y-4"
+          onSubmit={(e) => {
+            addApplication(e, {
+              title: jobTitle,
+              company: company,
+              status: status,
+              [status]: date,
+            });
+            setActive(false);
+          }}
+        >
           <div className="flex justify-between items-start">
             <div className="flex flex-col gap-y-1">
               <h1 className="font-bold text-xl">Add new job</h1>
@@ -130,6 +137,7 @@ export default function NewApplicationForm({
           <div className="flex flex-col gap-y-2">
             <label className="text-sm font-semibold">Current status</label>
             <div className="flex gap-x-1">
+              {/* // could maybe break these up into smaller components but not sure if its better tbh */}
               <div
                 className={
                   status === "applied"
@@ -186,7 +194,7 @@ export default function NewApplicationForm({
             htmlFor="date"
             className="flex flex-col gap-y-2 text-sm font-semibold"
           >
-            Date
+            Date *
             <input
               type="date"
               id="date"
