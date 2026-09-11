@@ -1,11 +1,29 @@
+import { supabase } from "../supabaseClient";
 import type { application } from "../types/application";
 import uploadApplication from "../utils/uploadApplication";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function useManageApplications() {
   const [applicationHistory, setApplicationHistory] = useState<application[]>(
     [],
   );
+
+  useEffect(() => {
+    const fetchHistory = async () => {
+      const { data, error } = await supabase
+        .from("job_applications")
+        .select("*");
+      if (error || !data) {
+        console.error(error);
+        return
+      }
+      if (!data) {
+        return
+      }
+      setApplicationHistory(data)
+    };
+    fetchHistory();
+  }, []);
 
   const addApplication = async (
     e: React.SubmitEvent<HTMLFormElement>,

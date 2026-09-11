@@ -1,8 +1,9 @@
 export type application = {
-  title: string;
+  user_id? : string
+  job_title: string;
   company: string;
-  status: string;
-  type?: string;
+  current_status: string;
+  job_type?: string;
   applied?: string;
   response?: string;
   interview?: string;

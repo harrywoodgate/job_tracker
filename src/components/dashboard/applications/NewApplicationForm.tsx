@@ -33,9 +33,9 @@ export default function NewApplicationForm({
           className="flex flex-col gap-y-4"
           onSubmit={(e) => {
             addApplication(e, {
-              title: jobTitle,
+              job_title: jobTitle,
               company: company,
-              status: status,
+              current_status: status,
               [status]: date,
             });
             setActive(false);
