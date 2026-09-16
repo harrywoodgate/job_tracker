@@ -36,6 +36,7 @@ export default function NewApplicationForm({
               job_title: jobTitle,
               company: company,
               current_status: status,
+              job_type: jobType,
               [status]: date,
             });
             setActive(false);
