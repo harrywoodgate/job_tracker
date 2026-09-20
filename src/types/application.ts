@@ -1,5 +1,6 @@
 export type application = {
-  user_id? : string
+  id: string;
+  user_id? : string;
   job_title: string;
   company: string;
   current_status: string;

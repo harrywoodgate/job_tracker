@@ -33,6 +33,7 @@ export default function NewApplicationForm({
           className="flex flex-col gap-y-4"
           onSubmit={(e) => {
             addApplication(e, {
+              id: crypto.randomUUID(),
               job_title: jobTitle,
               company: company,
               current_status: status,

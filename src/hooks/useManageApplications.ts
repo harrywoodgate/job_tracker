@@ -2,6 +2,7 @@ import { supabase } from "../supabaseClient";
 import type { application } from "../types/application";
 import uploadApplication from "../utils/uploadApplication";
 import { useState, useEffect } from "react";
+import removeApplicationRow from "../utils/removeApplicationRow";
 
 export default function useManageApplications() {
   const [applicationHistory, setApplicationHistory] = useState<application[]>(
@@ -15,12 +16,12 @@ export default function useManageApplications() {
         .select("*");
       if (error || !data) {
         console.error(error);
-        return
+        return;
       }
       if (!data) {
-        return
+        return;
       }
-      setApplicationHistory(data)
+      setApplicationHistory(data);
     };
     fetchHistory();
   }, []);
@@ -39,5 +40,17 @@ export default function useManageApplications() {
     setApplicationHistory((prev) => [...prev, application]);
   };
 
-  return { addApplication, applicationHistory };
+  const deleteApplication = async (application: application) => {
+    const error =  await removeApplicationRow(application);
+    if (error) {
+      alert(error);
+      console.error(error)
+      return
+    }
+    setApplicationHistory((prev) =>
+      prev.filter((app) => app.id !== application.id),
+    );
+  };
+
+  return { addApplication, applicationHistory, deleteApplication };
 }

@@ -7,6 +7,7 @@ export default async function uploadApplication(
   const user = (await supabase.auth.getUser()).data.user;
   if (!user) return ("No current user");
   const { error } = await supabase.from("job_applications").insert({
+    id: application.id,
     user_id: user.id,
     job_title: application.job_title,
     company: application.company,

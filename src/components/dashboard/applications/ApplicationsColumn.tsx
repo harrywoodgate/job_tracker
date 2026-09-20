@@ -1,5 +1,5 @@
 import type { application } from "../../../types/application";
-import type { applicationStatus } from "../../../types/applicationStatus";
+import ApplicationTile from "./ApplicationTile";
 
 export default function ApplicationsColumn({
   heading,
@@ -23,18 +23,6 @@ export default function ApplicationsColumn({
     "bg-green-500",
     "bg-red-500",
   ];
-  const applicationDate = heading.toLocaleLowerCase() as applicationStatus;
-  const jobTypeStyling: Record<string, string> = {
-    remote:
-      "text-green-600 bg-green-100 px-2 py-1 rounded-sm w-min text-[10px] mt-1",
-    hybrid: "text-blue-600 bg-blue-100 px-2 py-1 rounded-sm w-min text-[10px] mt-1",
-    onsite: "text-red-600 bg-red-100 px-2 py-1 rounded-sm w-min text-[10px] mt-1",
-  };
-  const capitalisedJobTypes: Record<string, string> = {
-    remote: "Remote",
-    hybrid: "Hybrid",
-    onsite: "Onsite",
-  };
 
   return (
     <div className="border-2 border-gray-200 rounded-md px-2 py-4 grid grid-rows-[auto_1fr_auto] gap-y-4">
@@ -55,34 +43,7 @@ export default function ApplicationsColumn({
       <div className="flex flex-col gap-y-2 h-[384px] overflow-scroll">
         {applications &&
           applications.map((application) => (
-            <div className="bg-white rounded-md p-2 text-sm flex flex-col gap-y-1">
-              <div className="flex justify-between items-center">
-                <h3 className="font-medium">{application.job_title}</h3>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-[20px] pb-[1px] cursor-pointer">
-                  <path d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z" />
-                </svg>{" "}
-              </div>
-              <p className="text-gray font-light">{application.company}</p>
-              <div className="flex justify-between items-center">
-                <p className="text-gray font-extralight text-[12px]">
-                  {heading} {application[applicationDate]}
-                </p>
-                <div className="bg-black text-white py-1 px-2 rounded-sm text-xs">
-                  C
-                </div>
-              </div>
-              <div
-                className={
-                  application.job_type
-                    ? jobTypeStyling[application.job_type]
-                    : ""
-                }
-              >
-                {application.job_type
-                  ? capitalisedJobTypes[application.job_type]
-                  : ""}
-              </div>
-            </div>
+            <ApplicationTile application={application} heading={heading} key={application.id}/>
           ))}
       </div>
       <div
