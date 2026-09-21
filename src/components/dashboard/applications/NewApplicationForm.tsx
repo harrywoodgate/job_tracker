@@ -1,23 +1,19 @@
-import { useState } from "react";
 import { useOutletContext } from "react-router";
 import type { outletContext } from "../../../types/outletContext";
+import type { formApplication } from "../../../types/formApplication";
+import type { dispatchAction } from "../../../types/dispatchAction";
 
 export default function NewApplicationForm({
   active,
   setActive,
-  status,
-  setStatus,
+  application,
+  dispatch,
 }: {
   active: boolean;
   setActive: React.Dispatch<React.SetStateAction<boolean>>;
-  status: string;
-  setStatus: React.Dispatch<React.SetStateAction<string>>;
+  application: formApplication;
+  dispatch: React.ActionDispatch<[action: dispatchAction]>;
 }) {
-  const [jobTitle, setJobTitle] = useState("");
-  const [company, setCompany] = useState("");
-  const [jobType, setJobType] = useState("");
-  const [date, setDate] = useState("");
-
   const { addApplication } = useOutletContext<outletContext>();
 
   return (
@@ -34,11 +30,11 @@ export default function NewApplicationForm({
           onSubmit={(e) => {
             addApplication(e, {
               id: crypto.randomUUID(),
-              job_title: jobTitle,
-              company: company,
-              current_status: status,
-              job_type: jobType,
-              [status]: date,
+              job_title: application.jobTitle,
+              company: application.company,
+              current_status: application.status,
+              job_type: application.jobType,
+              [application.status]: application.date,
             });
             setActive(false);
           }}
@@ -71,7 +67,10 @@ export default function NewApplicationForm({
                 id="job_title"
                 placeholder="e.g. Coffee Barista"
                 className="border-1 border-gray-200 rounded-md py-2 px-2 text-xs font-normal"
-                onChange={(e) => setJobTitle(e.target.value)}
+                value={application.jobTitle}
+                onChange={(e) =>
+                  dispatch({ type: "jobTitle", value: e.target.value })
+                }
                 required
               />
             </label>
@@ -85,7 +84,10 @@ export default function NewApplicationForm({
                 id="company"
                 placeholder="e.g. Acme Inc"
                 className="border-1 border-gray-200 rounded-md py-2 px-2 text-xs font-normal"
-                onChange={(e) => setCompany(e.target.value)}
+                value={application.company}
+                onChange={(e) =>
+                  dispatch({ type: "company", value: e.target.value })
+                }
                 required
               />
             </label>
@@ -100,36 +102,42 @@ export default function NewApplicationForm({
             <div className="flex gap-x-1 mt-2">
               <div
                 className={
-                  jobType === "remote"
+                  application.jobType === "remote"
                     ? "p-1 rounded-md cursor-pointer text-white font-semibold bg-teal border-1 border-teal text-xs py-2 px-4"
                     : "p-1 rounded-md cursor-pointer text-gray font-semibold border-1 border-gray-200 text-xs py-2 px-4"
                 }
                 onClick={() => {
-                  jobType === "remote" ? setJobType("") : setJobType("remote");
+                  application.jobType === "remote"
+                    ? dispatch({ type: "jobType", value: "" })
+                    : dispatch({ type: "jobType", value: "remote" });
                 }}
               >
                 Remote
               </div>
               <div
                 className={
-                  jobType === "hybrid"
+                  application.jobType === "hybrid"
                     ? "p-1 rounded-md cursor-pointer text-white font-semibold bg-teal border-1 border-teal text-xs py-2 px-4"
                     : "p-1 rounded-md cursor-pointer text-gray font-semibold border-1 border-gray-200 text-xs py-2 px-4"
                 }
                 onClick={() => {
-                  jobType === "hybrid" ? setJobType("") : setJobType("hybrid");
+                  application.jobType === "hybrid"
+                    ? dispatch({ type: "jobType", value: "" })
+                    : dispatch({ type: "jobType", value: "hybrid" });
                 }}
               >
                 Hybrid
               </div>
               <div
                 className={
-                  jobType === "onsite"
+                  application.jobType === "onsite"
                     ? "p-1 rounded-md cursor-pointer text-white font-semibold bg-teal border-1 border-teal text-xs py-2 px-4"
                     : "p-1 rounded-md cursor-pointer text-gray font-semibold border-1 border-gray-200 text-xs py-2 px-4"
                 }
                 onClick={() => {
-                  jobType === "onsite" ? setJobType("") : setJobType("onsite");
+                  application.jobType === "onsite"
+                    ? dispatch({ type: "jobType", value: "" })
+                    : dispatch({ type: "jobType", value: "onsite" });
                 }}
               >
                 Onsite
@@ -142,51 +150,51 @@ export default function NewApplicationForm({
               {/* // could maybe break these up into smaller components but not sure if its better tbh */}
               <div
                 className={
-                  status === "applied"
+                  application.status === "applied"
                     ? "p-1 rounded-md cursor-pointer text-white bg-blue-700 font-semibold px-4 py-2 text-xs"
                     : "p-1 rounded-md cursor-pointer text-blue-600 bg-blue-100 font-semibold px-4 py-2 text-xs"
                 }
-                onClick={() => setStatus("applied")}
+                onClick={() => dispatch({ type: "status", value: "applied" })}
               >
                 Applied
               </div>
               <div
                 className={
-                  status === "response"
+                  application.status === "response"
                     ? "p-1 rounded-md cursor-pointer text-white bg-teal-700 font-semibold px-4 py-2 text-xs"
                     : "p-1 rounded-md cursor-pointer text-teal-600 bg-teal-100 font-semibold px-4 py-2 text-xs"
                 }
-                onClick={() => setStatus("response")}
+                onClick={() => dispatch({ type: "status", value: "response" })}
               >
                 Response
               </div>
               <div
                 className={
-                  status === "interview"
+                  application.status === "interview"
                     ? "p-1 rounded-md cursor-pointer text-white bg-yellow-600 font-semibold px-4 py-2 text-xs"
                     : "p-1 rounded-md cursor-pointer text-yellow-600 bg-yellow-100 font-semibold px-4 py-2 text-xs"
                 }
-                onClick={() => setStatus("interview")}
+                onClick={() => dispatch({ type: "status", value: "interview" })}
               >
                 Interview
               </div>
               <div
                 className={
-                  status === "offer"
+                  application.status === "offer"
                     ? "p-1 rounded-md cursor-pointer text-white bg-green-600 font-semibold px-4 py-2 text-xs"
                     : "p-1 rounded-md cursor-pointer text-green-600 bg-green-100 font-semibold px-4 py-2 text-xs"
                 }
-                onClick={() => setStatus("offer")}
+                onClick={() => dispatch({ type: "status", value: "offer" })}
               >
                 Offer
               </div>
               <div
                 className={
-                  status === "rejected"
+                  application.status === "rejected"
                     ? "p-1 rounded-md cursor-pointer text-white bg-red-600 font-semibold px-4 py-2 text-xs"
                     : "p-1 rounded-md cursor-pointer text-red-600 bg-red-100 font-semibold px-4 py-2 text-xs"
                 }
-                onClick={() => setStatus("rejected")}
+                onClick={() => dispatch({ type: "status", value: "rejected" })}
               >
                 Rejected
               </div>
@@ -201,7 +209,10 @@ export default function NewApplicationForm({
               type="date"
               id="date"
               className="border-1 border-gray-200 p-2 font-normal text-xs rounded-md"
-              onChange={(e) => setDate(e.target.value)}
+              value={application.date}
+              onChange={(e) =>
+                dispatch({ type: "date", value: e.target.value })
+              }
               required
             />
           </label>

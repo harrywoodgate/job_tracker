@@ -1,18 +1,19 @@
 import type { application } from "../../../types/application";
 import ApplicationTile from "./ApplicationTile";
+import type { dispatchAction } from "../../../types/dispatchAction";
 
 export default function ApplicationsColumn({
   heading,
   colourIndex,
   count,
-  setStatus,
+  dispatch,
   setFormActive,
   applications,
 }: {
   heading: string;
   colourIndex: number;
   count?: number;
-  setStatus: React.Dispatch<React.SetStateAction<string>>;
+  dispatch: React.ActionDispatch<[action: dispatchAction]>
   setFormActive: React.Dispatch<React.SetStateAction<boolean>>;
   applications: application[];
 }) {
@@ -49,7 +50,7 @@ export default function ApplicationsColumn({
       <div
         className="flex justify-center gap-x-1 cursor-pointer text-sm text-gray"
         onClick={() => {
-          setStatus(heading.toLowerCase());
+          dispatch({type: "status", value: heading.toLowerCase()})
           setFormActive(true);
         }}
       >

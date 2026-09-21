@@ -52,5 +52,9 @@ export default function useManageApplications() {
     );
   };
 
+  // const updateApplication = (application: application) => {
+    
+  // }
+
   return { addApplication, applicationHistory, deleteApplication };
 }
