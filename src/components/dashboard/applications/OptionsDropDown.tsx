@@ -1,6 +1,8 @@
 import type { application } from "../../../types/application";
 import { useOutletContext } from "react-router";
 import type { outletContext } from "../../../types/outletContext";
+import useApplicationsContext from "../../../hooks/useApplicationsContext";
+import type { applicationStatus } from "../../../types/applicationStatus";
 
 export default function OptionsDropDown({
   active,
@@ -12,6 +14,8 @@ export default function OptionsDropDown({
   application: application;
 }) {
   const { deleteApplication } = useOutletContext<outletContext>();
+  const { setFormActive, dispatch } = useApplicationsContext();
+  const applicationDate = application.current_status as applicationStatus;
 
   return (
     <div
@@ -23,7 +27,17 @@ export default function OptionsDropDown({
     >
       <div
         className="flex items-center gap-x-2 w-full hover:bg-gray-100 rounded-sm pr-12 pl-2 py-1"
-        onClick={() => setActive(false)}
+        onClick={() => {
+          dispatch({ type: "jobTitle", value: application.job_title });
+          dispatch({ type: "company", value: application.company });
+          if (application.job_type) {
+            dispatch({ type: "jobType", value: application.job_type });
+          }
+          dispatch({ type: "status", value: application.current_status });
+          dispatch({type: "date", value: application[applicationDate] as applicationStatus})
+          setFormActive(true);
+          setActive(false);
+        }}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

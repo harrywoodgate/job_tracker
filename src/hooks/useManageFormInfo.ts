@@ -23,20 +23,28 @@ export default function useManageFormInfo() {
           ...state,
           jobTitle: action.value,
         };
-        case "company":
+      case "company":
         return {
           ...state,
           company: action.value,
         };
-        case "jobType":
+      case "jobType":
         return {
           ...state,
           jobType: action.value,
         };
-        case "date":
+      case "date":
         return {
           ...state,
           date: action.value,
+        };
+      case "resetForm":
+        return {
+          status: "applied",
+          jobTitle: "",
+          company: "",
+          jobType: "",
+          date: "",
         };
       default:
         return state;
@@ -44,6 +52,7 @@ export default function useManageFormInfo() {
   }
 
   return {
-    formApplication, dispatch
+    formApplication,
+    dispatch,
   };
 }

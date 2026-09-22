@@ -3,7 +3,7 @@ import type { outletContext } from "../../../types/outletContext";
 import type { formApplication } from "../../../types/formApplication";
 import type { dispatchAction } from "../../../types/dispatchAction";
 
-export default function NewApplicationForm({
+export default function ApplicationForm({
   active,
   setActive,
   application,
@@ -36,6 +36,7 @@ export default function NewApplicationForm({
               job_type: application.jobType,
               [application.status]: application.date,
             });
+            dispatch({type: "resetForm"})
             setActive(false);
           }}
         >

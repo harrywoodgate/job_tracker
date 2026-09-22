@@ -3,4 +3,5 @@ export type dispatchAction =
   | { type: "jobTitle"; value: string }
   | { type: "company"; value: string }
   | { type: "jobType"; value: string }
-  | { type: "date"; value: string };
+  | { type: "date"; value: string }
+  | { type: "resetForm" };

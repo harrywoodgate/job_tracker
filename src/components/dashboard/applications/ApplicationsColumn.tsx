@@ -1,22 +1,17 @@
 import type { application } from "../../../types/application";
 import ApplicationTile from "./ApplicationTile";
-import type { dispatchAction } from "../../../types/dispatchAction";
+import useApplicationsContext from "../../../hooks/useApplicationsContext";
 
 export default function ApplicationsColumn({
   heading,
   colourIndex,
-  count,
-  dispatch,
-  setFormActive,
   applications,
 }: {
   heading: string;
   colourIndex: number;
-  count?: number;
-  dispatch: React.ActionDispatch<[action: dispatchAction]>
-  setFormActive: React.Dispatch<React.SetStateAction<boolean>>;
   applications: application[];
 }) {
+  const { setFormActive, dispatch } = useApplicationsContext();
   const colours = [
     "bg-blue-500",
     "bg-teal",
@@ -24,6 +19,7 @@ export default function ApplicationsColumn({
     "bg-green-500",
     "bg-red-500",
   ];
+  const count = applications.length;
 
   return (
     <div className="border-2 border-gray-200 rounded-md px-2 py-4 grid grid-rows-[auto_1fr_auto] gap-y-4">
@@ -36,7 +32,7 @@ export default function ApplicationsColumn({
             <h2 className="font-medium text-sm">{heading}</h2>
           </div>
           <p className="bg-gray-200 font-medium rounded-lg px-2 py-1 text-xs flex items-center">
-            {count ? count : 0}
+            {count}
           </p>
         </div>
         <div className="h-[2px] bg-gray-200 w-[90%]"></div>
@@ -44,13 +40,17 @@ export default function ApplicationsColumn({
       <div className="flex flex-col gap-y-2 h-[384px] overflow-scroll">
         {applications &&
           applications.map((application) => (
-            <ApplicationTile application={application} heading={heading} key={application.id}/>
+            <ApplicationTile
+              application={application}
+              heading={heading}
+              key={application.id}
+            />
           ))}
       </div>
       <div
         className="flex justify-center gap-x-1 cursor-pointer text-sm text-gray"
         onClick={() => {
-          dispatch({type: "status", value: heading.toLowerCase()})
+          dispatch({ type: "status", value: heading.toLowerCase() });
           setFormActive(true);
         }}
       >
