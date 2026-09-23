@@ -11,6 +11,7 @@ import { ApplicationsContext } from "../../../contexts/applicationsContext";
 
 export default function Applications() {
   const [formActive, setFormActive] = useState(false);
+  const [formType, setFormType] = useState("new")
   const { formApplication, dispatch } = useManageFormInfo();
 
   const { applicationHistory } = useOutletContext<outletContext>();
@@ -31,8 +32,8 @@ export default function Applications() {
   return (
     <div className="p-6 h-full flex justify-center">
       <div className="w-full max-w-[1500px] flex flex-col gap-y-8">
-        <ApplicationsHeader setFormActive={setFormActive} dispatch={dispatch} />
-        <ApplicationsContext value={{ setFormActive, dispatch }}>
+        <ApplicationsHeader setFormActive={setFormActive} setFormType={setFormType} dispatch={dispatch} />
+        <ApplicationsContext value={{ setFormActive, dispatch, setFormType }}>
           <div className="grid grid-cols-5 gap-x-2">
             <ApplicationsColumn
               heading="Applied"
@@ -67,6 +68,7 @@ export default function Applications() {
         setActive={setFormActive}
         application={formApplication}
         dispatch={dispatch}
+        formType={formType}
       />
     </div>
   );

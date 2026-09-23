@@ -12,11 +12,11 @@ export default async function updateApplicationRow(application: application) {
       response: application.response,
       interview: application.interview,
       offer: application.offer,
-      rejection: application.rejected
+      rejected: application.rejected,
     })
     .eq("id", application.id);
 
-    if (error) {
-        return error
-    }
+  if (error) {
+    return error;
+  }
 }

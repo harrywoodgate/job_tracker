@@ -1,51 +1,70 @@
 import { useReducer } from "react";
-import type { formApplication } from "../types/formApplication";
 import type { dispatchAction } from "../types/dispatchAction";
+import type { application } from "../types/application";
 
 export default function useManageFormInfo() {
   const [formApplication, dispatch] = useReducer(reducer, {
-    status: "applied",
-    jobTitle: "",
+    id: "",
+    current_status: "applied",
+    job_title: "",
     company: "",
-    jobType: "",
-    date: "",
+    job_type: "",
+    applied: "",
+    response: "",
+    interview: "",
+    offer: "",
+    rejected: "",
   });
 
-  function reducer(state: formApplication, action: dispatchAction) {
+  function reducer(state: application, action: dispatchAction) {
     switch (action.type) {
-      case "status":
+      case "id": {
         return {
           ...state,
-          status: action.value,
+          id: action.value,
         };
-      case "jobTitle":
+      }
+      case "current_status":
         return {
           ...state,
-          jobTitle: action.value,
+          current_status: action.value,
+        };
+      case "job_title":
+        return {
+          ...state,
+          job_title: action.value,
         };
       case "company":
         return {
           ...state,
           company: action.value,
         };
-      case "jobType":
+      case "job_type":
         return {
           ...state,
-          jobType: action.value,
+          job_type: action.value,
         };
       case "date":
         return {
           ...state,
-          date: action.value,
+          [action.status]: action.value,
         };
       case "resetForm":
         return {
-          status: "applied",
-          jobTitle: "",
+          id: "",
+          current_status: "applied",
+          job_title: "",
           company: "",
-          jobType: "",
-          date: "",
+          job_type: "",
+          applied: "",
+          response: "",
+          interview: "",
+          offer: "",
+          rejected: "",
         };
+      case "editApplication":
+        return action.value;
+
       default:
         return state;
     }

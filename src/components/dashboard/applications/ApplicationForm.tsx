@@ -1,20 +1,24 @@
 import { useOutletContext } from "react-router";
 import type { outletContext } from "../../../types/outletContext";
-import type { formApplication } from "../../../types/formApplication";
 import type { dispatchAction } from "../../../types/dispatchAction";
+import type { application } from "../../../types/application";
+import type { applicationStatus } from "../../../types/applicationStatus";
 
 export default function ApplicationForm({
   active,
   setActive,
   application,
   dispatch,
+  formType,
 }: {
   active: boolean;
   setActive: React.Dispatch<React.SetStateAction<boolean>>;
-  application: formApplication;
+  application: application;
   dispatch: React.ActionDispatch<[action: dispatchAction]>;
+  formType: string
 }) {
-  const { addApplication } = useOutletContext<outletContext>();
+  const { addApplication, updateApplication } = useOutletContext<outletContext>();
+  const status = application.current_status as applicationStatus
 
   return (
     <div
@@ -28,15 +32,16 @@ export default function ApplicationForm({
         <form
           className="flex flex-col gap-y-4"
           onSubmit={(e) => {
-            addApplication(e, {
+            e.preventDefault()
+            formType === "new" ? addApplication(e, {
               id: crypto.randomUUID(),
-              job_title: application.jobTitle,
+              job_title: application.job_title,
               company: application.company,
-              current_status: application.status,
-              job_type: application.jobType,
-              [application.status]: application.date,
-            });
-            dispatch({type: "resetForm"})
+              current_status: application.current_status,
+              job_type: application.job_type,
+              [application.current_status]: application[status],
+            }) : updateApplication(application);
+            dispatch({ type: "resetForm" });
             setActive(false);
           }}
         >
@@ -52,7 +57,10 @@ export default function ApplicationForm({
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               className="fill-gray w-[20px] cursor-pointer"
-              onClick={() => setActive(false)}
+              onClick={() => {
+                dispatch({ type: "resetForm" });
+                setActive(false);
+              }}
             >
               <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
             </svg>
@@ -68,9 +76,9 @@ export default function ApplicationForm({
                 id="job_title"
                 placeholder="e.g. Coffee Barista"
                 className="border-1 border-gray-200 rounded-md py-2 px-2 text-xs font-normal"
-                value={application.jobTitle}
+                value={application.job_title}
                 onChange={(e) =>
-                  dispatch({ type: "jobTitle", value: e.target.value })
+                  dispatch({ type: "job_title", value: e.target.value })
                 }
                 required
               />
@@ -103,42 +111,42 @@ export default function ApplicationForm({
             <div className="flex gap-x-1 mt-2">
               <div
                 className={
-                  application.jobType === "remote"
+                  application.job_type === "remote"
                     ? "p-1 rounded-md cursor-pointer text-white font-semibold bg-teal border-1 border-teal text-xs py-2 px-4"
                     : "p-1 rounded-md cursor-pointer text-gray font-semibold border-1 border-gray-200 text-xs py-2 px-4"
                 }
                 onClick={() => {
-                  application.jobType === "remote"
-                    ? dispatch({ type: "jobType", value: "" })
-                    : dispatch({ type: "jobType", value: "remote" });
+                  application.job_type === "remote"
+                    ? dispatch({ type: "job_type", value: "" })
+                    : dispatch({ type: "job_type", value: "remote" });
                 }}
               >
                 Remote
               </div>
               <div
                 className={
-                  application.jobType === "hybrid"
+                  application.job_type === "hybrid"
                     ? "p-1 rounded-md cursor-pointer text-white font-semibold bg-teal border-1 border-teal text-xs py-2 px-4"
                     : "p-1 rounded-md cursor-pointer text-gray font-semibold border-1 border-gray-200 text-xs py-2 px-4"
                 }
                 onClick={() => {
-                  application.jobType === "hybrid"
-                    ? dispatch({ type: "jobType", value: "" })
-                    : dispatch({ type: "jobType", value: "hybrid" });
+                  application.job_type === "hybrid"
+                    ? dispatch({ type: "job_type", value: "" })
+                    : dispatch({ type: "job_type", value: "hybrid" });
                 }}
               >
                 Hybrid
               </div>
               <div
                 className={
-                  application.jobType === "onsite"
+                  application.job_type === "onsite"
                     ? "p-1 rounded-md cursor-pointer text-white font-semibold bg-teal border-1 border-teal text-xs py-2 px-4"
                     : "p-1 rounded-md cursor-pointer text-gray font-semibold border-1 border-gray-200 text-xs py-2 px-4"
                 }
                 onClick={() => {
-                  application.jobType === "onsite"
-                    ? dispatch({ type: "jobType", value: "" })
-                    : dispatch({ type: "jobType", value: "onsite" });
+                  application.job_type === "onsite"
+                    ? dispatch({ type: "job_type", value: "" })
+                    : dispatch({ type: "job_type", value: "onsite" });
                 }}
               >
                 Onsite
@@ -151,51 +159,51 @@ export default function ApplicationForm({
               {/* // could maybe break these up into smaller components but not sure if its better tbh */}
               <div
                 className={
-                  application.status === "applied"
+                  application.current_status === "applied"
                     ? "p-1 rounded-md cursor-pointer text-white bg-blue-700 font-semibold px-4 py-2 text-xs"
                     : "p-1 rounded-md cursor-pointer text-blue-600 bg-blue-100 font-semibold px-4 py-2 text-xs"
                 }
-                onClick={() => dispatch({ type: "status", value: "applied" })}
+                onClick={() => dispatch({ type: "current_status", value: "applied" })}
               >
                 Applied
               </div>
               <div
                 className={
-                  application.status === "response"
+                  application.current_status === "response"
                     ? "p-1 rounded-md cursor-pointer text-white bg-teal-700 font-semibold px-4 py-2 text-xs"
                     : "p-1 rounded-md cursor-pointer text-teal-600 bg-teal-100 font-semibold px-4 py-2 text-xs"
                 }
-                onClick={() => dispatch({ type: "status", value: "response" })}
+                onClick={() => dispatch({ type: "current_status", value: "response" })}
               >
                 Response
               </div>
               <div
                 className={
-                  application.status === "interview"
+                  application.current_status === "interview"
                     ? "p-1 rounded-md cursor-pointer text-white bg-yellow-600 font-semibold px-4 py-2 text-xs"
                     : "p-1 rounded-md cursor-pointer text-yellow-600 bg-yellow-100 font-semibold px-4 py-2 text-xs"
                 }
-                onClick={() => dispatch({ type: "status", value: "interview" })}
+                onClick={() => dispatch({ type: "current_status", value: "interview" })}
               >
                 Interview
               </div>
               <div
                 className={
-                  application.status === "offer"
+                  application.current_status === "offer"
                     ? "p-1 rounded-md cursor-pointer text-white bg-green-600 font-semibold px-4 py-2 text-xs"
                     : "p-1 rounded-md cursor-pointer text-green-600 bg-green-100 font-semibold px-4 py-2 text-xs"
                 }
-                onClick={() => dispatch({ type: "status", value: "offer" })}
+                onClick={() => dispatch({ type: "current_status", value: "offer" })}
               >
                 Offer
               </div>
               <div
                 className={
-                  application.status === "rejected"
+                  application.current_status === "rejected"
                     ? "p-1 rounded-md cursor-pointer text-white bg-red-600 font-semibold px-4 py-2 text-xs"
                     : "p-1 rounded-md cursor-pointer text-red-600 bg-red-100 font-semibold px-4 py-2 text-xs"
                 }
-                onClick={() => dispatch({ type: "status", value: "rejected" })}
+                onClick={() => dispatch({ type: "current_status", value: "rejected" })}
               >
                 Rejected
               </div>
@@ -210,17 +218,21 @@ export default function ApplicationForm({
               type="date"
               id="date"
               className="border-1 border-gray-200 p-2 font-normal text-xs rounded-md"
-              value={application.date}
+              value={application[status]}
               onChange={(e) =>
-                dispatch({ type: "date", value: e.target.value })
+                dispatch({ type: "date", status:application.current_status, value: e.target.value })
               }
               required
             />
           </label>
           <div className="flex justify-between mt-2">
             <button
+              type="button"
               className="bg-white font-semibold text-gray border-1 border-gray-200 px-4 py-2 rounded-md text-xs cursor-pointer"
-              onClick={() => setActive(false)}
+              onClick={() => {
+                dispatch({ type: "resetForm" });
+                setActive(false);
+              }}
             >
               Cancel
             </button>

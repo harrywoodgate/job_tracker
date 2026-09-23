@@ -11,7 +11,7 @@ export default function ApplicationsColumn({
   colourIndex: number;
   applications: application[];
 }) {
-  const { setFormActive, dispatch } = useApplicationsContext();
+  const { setFormActive, dispatch, setFormType } = useApplicationsContext();
   const colours = [
     "bg-blue-500",
     "bg-teal",
@@ -50,7 +50,8 @@ export default function ApplicationsColumn({
       <div
         className="flex justify-center gap-x-1 cursor-pointer text-sm text-gray"
         onClick={() => {
-          dispatch({ type: "status", value: heading.toLowerCase() });
+          dispatch({ type: "current_status", value: heading.toLowerCase() });
+          setFormType("new");
           setFormActive(true);
         }}
       >

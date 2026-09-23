@@ -3,9 +3,11 @@ import type { dispatchAction } from "../../../types/dispatchAction";
 export default function ApplicationsHeader({
   setFormActive,
   dispatch,
+  setFormType
 }: {
   setFormActive: React.Dispatch<React.SetStateAction<boolean>>;
-  dispatch: React.ActionDispatch<[action: dispatchAction]> 
+  dispatch: React.ActionDispatch<[action: dispatchAction]>;
+  setFormType: React.Dispatch<React.SetStateAction<string>> 
 }) {
   return (
     <div className="flex justify-between items-center">
@@ -18,7 +20,8 @@ export default function ApplicationsHeader({
       <button
         className="flex cursor-pointer gap-x-1 bg-primary-blue text-white text-sm h-min py-2 px-3 rounded-md"
         onClick={() => {
-          dispatch({type: "status", value: "applied"})
+          dispatch({type: "current_status", value: "applied"})
+          setFormType("new")
           setFormActive(true)}}
       >
         <svg

@@ -3,6 +3,7 @@ import type { application } from "../types/application";
 import uploadApplication from "../utils/uploadApplication";
 import { useState, useEffect } from "react";
 import removeApplicationRow from "../utils/removeApplicationRow";
+import updateApplicationRow from "../utils/updateApplicationRow";
 
 export default function useManageApplications() {
   const [applicationHistory, setApplicationHistory] = useState<application[]>(
@@ -34,6 +35,7 @@ export default function useManageApplications() {
 
     const error = await uploadApplication(application);
     if (error) {
+      alert(`An error ${error} has occured please try again`);
       console.error(error);
       return;
     }
@@ -41,20 +43,34 @@ export default function useManageApplications() {
   };
 
   const deleteApplication = async (application: application) => {
-    const error =  await removeApplicationRow(application);
+    const error = await removeApplicationRow(application);
     if (error) {
-      alert(error);
-      console.error(error)
-      return
+      alert(`An error ${error} has occured please try again`);
+      console.error(error);
+      return;
     }
     setApplicationHistory((prev) =>
       prev.filter((app) => app.id !== application.id),
     );
   };
 
-  // const updateApplication = (application: application) => {
-    
-  // }
+  const updateApplication = async (application: application) => {
+    console.log(application);
+    const error = await updateApplicationRow(application);
+    if (error) {
+      alert(`An error ${error} has occured please try again`);
+      console.error(error);
+      return;
+    }
+    setApplicationHistory((prev) =>
+      prev.map((app) => (app.id === application.id ? application : app)),
+    );
+  };
 
-  return { addApplication, applicationHistory, deleteApplication };
+  return {
+    addApplication,
+    applicationHistory,
+    deleteApplication,
+    updateApplication,
+  };
 }
