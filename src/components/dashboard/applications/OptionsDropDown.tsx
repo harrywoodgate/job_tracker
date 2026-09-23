@@ -2,6 +2,7 @@ import type { application } from "../../../types/application";
 import { useOutletContext } from "react-router";
 import type { outletContext } from "../../../types/outletContext";
 import useApplicationsContext from "../../../hooks/useApplicationsContext";
+import { useRef, useEffect } from "react";
 
 export default function OptionsDropDown({
   active,
@@ -26,7 +27,7 @@ export default function OptionsDropDown({
       <div
         className="flex items-center gap-x-2 w-full hover:bg-gray-100 rounded-sm pr-12 pl-2 py-1"
         onClick={() => {
-          dispatch({type: "editApplication", value: application})
+          dispatch({ type: "editApplication", value: application });
           setFormType("edit");
           setFormActive(true);
           setActive(false);

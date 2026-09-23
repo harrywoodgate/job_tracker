@@ -2,10 +2,14 @@ import OptionsDropDown from "./OptionsDropDown";
 import { useState } from "react";
 import type { applicationStatus } from "../../../types/applicationStatus";
 import type { application } from "../../../types/application";
+import { useRef, useEffect } from "react";
 
-export default function ApplicationTile({ application, heading } : {
-    application: application;
-    heading: string;
+export default function ApplicationTile({
+  application,
+  heading,
+}: {
+  application: application;
+  heading: string;
 }) {
   const [optionsDropDownActive, setOptionsDropDownActive] = useState(false);
   const applicationDate = heading.toLocaleLowerCase() as applicationStatus;
@@ -23,23 +27,44 @@ export default function ApplicationTile({ application, heading } : {
     onsite: "Onsite",
   };
 
+  const dropDownRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    function handleClickOutside(event: PointerEvent) {
+      if (
+        dropDownRef.current &&
+        !dropDownRef.current.contains(event.target as Node)
+      ) {
+        setOptionsDropDownActive(false);
+      }
+    }
+
+    document.addEventListener("pointerdown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("pointerdown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className="bg-white rounded-md p-2 text-sm flex flex-col gap-y-1 shadow-sm">
       <div className="flex justify-between items-center relative">
         <h3 className="font-semibold">{application.job_title}</h3>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          className="w-[20px] pb-[1px] cursor-pointer"
-          onClick={() => setOptionsDropDownActive(!optionsDropDownActive)}
-        >
-          <path d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z" />
-        </svg>
-        <OptionsDropDown
-          active={optionsDropDownActive}
-          setActive={setOptionsDropDownActive}
-          application={application}
-        />
+        <div ref={dropDownRef}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            className="w-[20px] pb-[1px] cursor-pointer"
+            onClick={() => setOptionsDropDownActive(!optionsDropDownActive)}
+          >
+            <path d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z" />
+          </svg>
+          <OptionsDropDown
+            active={optionsDropDownActive}
+            setActive={setOptionsDropDownActive}
+            application={application}
+          />
+        </div>
       </div>
       <p className="text-gray font-light">{application.company}</p>
       <div className="flex justify-between items-center">
