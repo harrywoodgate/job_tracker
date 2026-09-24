@@ -15,11 +15,11 @@ export default function ApplicationTile({
   const applicationDate = heading.toLocaleLowerCase() as applicationStatus;
   const jobTypeStyling: Record<string, string> = {
     remote:
-      "text-green-600 bg-green-100 px-2 py-1 rounded-sm w-min text-[10px] mt-1",
+      "text-green-600 bg-green-100 px-2 py-1 rounded-sm w-min md:max-lg:text-[8px] text-[10px] mt-1",
     hybrid:
-      "text-blue-600 bg-blue-100 px-2 py-1 rounded-sm w-min text-[10px] mt-1",
+      "text-blue-600 bg-blue-100 px-2 py-1 rounded-sm w-min md:max-lg:text-[8px] text-[10px] mt-1",
     onsite:
-      "text-red-600 bg-red-100 px-2 py-1 rounded-sm w-min text-[10px] mt-1",
+      "text-red-600 bg-red-100 px-2 py-1 rounded-sm w-min md:max-lg:text-[8px] text-[10px] mt-1",
   };
   const capitalisedJobTypes: Record<string, string> = {
     remote: "Remote",
@@ -50,7 +50,7 @@ export default function ApplicationTile({
   return (
     <div className="bg-white rounded-md p-2 text-sm flex flex-col gap-y-1 shadow-sm">
       <div className="flex justify-between items-center relative">
-        <h3 className="font-semibold">{application.job_title}</h3>
+        <h3 className="md:max-lg:text-xs text-sm font-semibold">{application.job_title}</h3>
         <div ref={dropDownRef}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -67,12 +67,12 @@ export default function ApplicationTile({
           />
         </div>
       </div>
-      <p className="text-gray font-light">{application.company}</p>
-      <div className="flex justify-between items-center">
-        <p className="text-gray font-extralight text-[12px]">
+      <p className="md:max-lg:text-xs text-sm text-gray font-light">{application.company}</p>
+      <div className="flex justify-between gap-x-1 items-center">
+        <p className="text-gray font-extralight md:max-lg:text-[10px] text-[12px]">
           {heading} {application[applicationDate]}
         </p>
-        <div className="flex justify-center items-center bg-black text-white h-[25px] w-[25px] font-semibold rounded-sm text-xs">
+        <div className="flex justify-center items-center bg-black text-white md:max-lg:h-[20px] md:max-lg:w-[20px] h-[25px] w-[25px] font-semibold rounded-sm md:max-lg:text-[10px] text-xs">
           C
         </div>
       </div>

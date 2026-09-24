@@ -6,10 +6,14 @@ export default function ApplicationsColumn({
   heading,
   colourIndex,
   applications,
+  mobileColumnActive,
+  setMobileColumnActive,
 }: {
   heading: string;
   colourIndex: number;
   applications: application[];
+  mobileColumnActive: string;
+  setMobileColumnActive: React.Dispatch<React.SetStateAction<string>>;
 }) {
   const { setFormActive, dispatch, setFormType } = useApplicationsContext();
   const colours = [
@@ -22,22 +26,42 @@ export default function ApplicationsColumn({
   const count = applications.length;
 
   return (
-    <div className="border-2 border-gray-200 rounded-md px-2 py-4 grid grid-rows-[auto_1fr_auto] gap-y-4">
+    <div className="border-2 border-gray-200 rounded-md px-2 py-4 md:grid grid-rows-[auto_1fr_auto] gap-y-4">
       <div className="flex flex-col gap-y-4 items-center">
         <div className="flex justify-between w-full items-center px-2">
           <div className="flex items-center gap-x-2">
             <div
               className={`rounded-full ${colours[colourIndex]} h-[8px] w-[8px]`}
             ></div>
-            <h2 className="font-medium text-sm">{heading}</h2>
+            <h2 className="font-medium text-xs lg:text-sm">{heading}</h2>
           </div>
-          <p className="bg-gray-200 font-medium rounded-lg px-2 py-1 text-xs flex items-center">
-            {count}
-          </p>
+          <div className="flex items-center gap-x-2">
+            <p className="bg-gray-200 font-medium rounded-lg px-2 py-0.5 lg:py-1 text-[10px] lg:text-xs flex items-center">
+              {count}
+            </p>
+            <svg
+              onClick={() => {
+                mobileColumnActive === heading
+                  ? setMobileColumnActive("")
+                  : setMobileColumnActive(heading);
+              }}
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              className="md:hidden w-[20px] fill-gray"
+            >
+              <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+            </svg>
+          </div>
         </div>
-        <div className="h-[2px] bg-gray-200 w-[90%]"></div>
+        <div className="hidden md:block h-[2px] bg-gray-200 w-[90%]"></div>
       </div>
-      <div className="flex flex-col gap-y-2 h-[384px] overflow-scroll">
+      <div
+        className={
+          mobileColumnActive === heading
+            ? "flex flex-col gap-y-2 max-h-[384px] overflow-scroll pt-6 transition-[max-height] duration-200"
+            : "md:flex flex-col gap-y-2 h-[384px] overflow-scroll max-h-0 md:max-h-full"
+        }
+      >
         {applications &&
           applications.map((application) => (
             <ApplicationTile
@@ -48,7 +72,7 @@ export default function ApplicationsColumn({
           ))}
       </div>
       <div
-        className="flex justify-center gap-x-1 cursor-pointer text-sm text-gray"
+        className="hidden md:flex justify-center gap-x-1 cursor-pointer text-sm text-gray"
         onClick={() => {
           dispatch({ type: "current_status", value: heading.toLowerCase() });
           setFormType("new");

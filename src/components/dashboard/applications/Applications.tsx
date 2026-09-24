@@ -11,8 +11,9 @@ import { ApplicationsContext } from "../../../contexts/applicationsContext";
 
 export default function Applications() {
   const [formActive, setFormActive] = useState(false);
-  const [formType, setFormType] = useState("new")
+  const [formType, setFormType] = useState("new");
   const { formApplication, dispatch } = useManageFormInfo();
+  const [mobileColumnActive, setMobileColumnActive] = useState("interview");
 
   const { applicationHistory } = useOutletContext<outletContext>();
 
@@ -30,32 +31,46 @@ export default function Applications() {
   });
 
   return (
-    <div className="p-6 h-full flex justify-center">
+    <div className="p-6 h-full flex justify-center lg:col-span-1 col-span-2">
       <div className="w-full max-w-[1500px] flex flex-col gap-y-8">
-        <ApplicationsHeader setFormActive={setFormActive} setFormType={setFormType} dispatch={dispatch} />
+        <ApplicationsHeader
+          setFormActive={setFormActive}
+          setFormType={setFormType}
+          dispatch={dispatch}
+        />
         <ApplicationsContext value={{ setFormActive, dispatch, setFormType }}>
-          <div className="grid grid-cols-5 gap-x-2">
+          <div className="flex flex-col md:grid grid-cols-5 gap-x-2 gap-y-2">
             <ApplicationsColumn
+              setMobileColumnActive={setMobileColumnActive}
+              mobileColumnActive={mobileColumnActive}
               heading="Applied"
               colourIndex={0}
               applications={applications.applied}
             />
             <ApplicationsColumn
+              setMobileColumnActive={setMobileColumnActive}
+              mobileColumnActive={mobileColumnActive}
               heading="Response"
               colourIndex={1}
               applications={applications.response}
             />
             <ApplicationsColumn
+              setMobileColumnActive={setMobileColumnActive}
+              mobileColumnActive={mobileColumnActive}
               heading="Interview"
               colourIndex={2}
               applications={applications.interview}
             />
             <ApplicationsColumn
+              setMobileColumnActive={setMobileColumnActive}
+              mobileColumnActive={mobileColumnActive}
               heading="Offer"
               colourIndex={3}
               applications={applications.offer}
             />
             <ApplicationsColumn
+              setMobileColumnActive={setMobileColumnActive}
+              mobileColumnActive={mobileColumnActive}
               heading="Rejected"
               colourIndex={4}
               applications={applications.rejected}

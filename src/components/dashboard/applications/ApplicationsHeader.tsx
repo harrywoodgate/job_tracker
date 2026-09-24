@@ -12,13 +12,13 @@ export default function ApplicationsHeader({
   return (
     <div className="flex justify-between items-center">
       <div className="flex flex-col gap-y-1">
-        <h1 className="font-semibold text-2xl">Applications</h1>
-        <p className="text-gray text-sm">
+        <h1 className="font-semibold text-lg md:text-2xl">Applications</h1>
+        <p className="text-gray text-xs md:text-sm">
           Track and manage all your job applications
         </p>
       </div>
       <button
-        className="flex cursor-pointer gap-x-1 bg-primary-blue text-white text-sm h-min py-2 px-3 rounded-md"
+        className="flex cursor-pointer gap-x-1 bg-primary-blue text-white text-sm h-min py-1 md:py-2 px-2 md:px-3 rounded-md"
         onClick={() => {
           dispatch({type: "current_status", value: "applied"})
           setFormType("new")
@@ -31,7 +31,7 @@ export default function ApplicationsHeader({
         >
           <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
         </svg>
-        <span>New Application</span>
+        <span className="hidden md:block">New Application</span>
       </button>
     </div>
   );
