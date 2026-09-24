@@ -2,7 +2,6 @@ import type { application } from "../../../types/application";
 import { useOutletContext } from "react-router";
 import type { outletContext } from "../../../types/outletContext";
 import useApplicationsContext from "../../../hooks/useApplicationsContext";
-import { useRef, useEffect } from "react";
 
 export default function OptionsDropDown({
   active,

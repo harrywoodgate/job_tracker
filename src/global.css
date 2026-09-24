@@ -5,7 +5,18 @@
   --color-primary-blue: #011e4a;
   --color-secondary-blue: #003895;
   --color-teal: #008095;
-  --color-gray: #64748B;
+  --color-gray: #64748b;
+
+  @keyframes nav-slide-in {
+    0% {
+      transform: translateX(-240px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  --animate-nav-slide-in: nav-slide-in 0.2s ease-out forwards;
 }
 
 * {

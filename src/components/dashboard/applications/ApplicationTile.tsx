@@ -27,8 +27,9 @@ export default function ApplicationTile({
     onsite: "Onsite",
   };
 
-  const dropDownRef = useRef<HTMLDivElement>(null);
+  // click anywhere else on screen to close drop down logic
   
+  const dropDownRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     function handleClickOutside(event: PointerEvent) {
       if (
