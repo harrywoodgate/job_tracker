@@ -19,7 +19,7 @@ export default function ApplicationForm({
 }) {
   const { addApplication, updateApplication } = useOutletContext<outletContext>();
   const status = application.current_status as applicationStatus
-
+// maybe shorten the form for drag and drop also exit button just edits form with new status and no date
   return (
     <div
       className={

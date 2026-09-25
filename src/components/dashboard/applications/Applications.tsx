@@ -14,8 +14,10 @@ export default function Applications() {
   const [formType, setFormType] = useState("new");
   const { formApplication, dispatch } = useManageFormInfo();
   const [mobileColumnActive, setMobileColumnActive] = useState("interview");
+  const [draggedTile, setDraggedTile] = useState<null | application>(null);
 
-  const { applicationHistory } = useOutletContext<outletContext>();
+  const { applicationHistory, updateApplication } =
+    useOutletContext<outletContext>();
 
   let applications: Record<applicationStatus, application[]> = {
     applied: [],
@@ -30,6 +32,26 @@ export default function Applications() {
     applications[currentStatus].push(application);
   });
 
+  function handleDrop(newStatus: applicationStatus) {
+    let application: application;
+    if (draggedTile) {
+      application = draggedTile;
+    }
+    applicationHistory.map((app) => {
+      if (app.id === application.id) {
+        if (app[newStatus] != null) {
+          application.current_status = newStatus;
+          updateApplication(application);
+        } else {
+          application.current_status = newStatus;
+          setFormType("edit");
+          dispatch({ type: "editApplication", value: application });
+          setFormActive(true);
+        }
+      }
+    });
+  }
+
   return (
     <div className="p-6 h-full flex justify-center lg:col-span-1 col-span-2">
       <div className="w-full max-w-[1500px] flex flex-col gap-y-8">
@@ -38,9 +60,12 @@ export default function Applications() {
           setFormType={setFormType}
           dispatch={dispatch}
         />
-        <ApplicationsContext value={{ setFormActive, dispatch, setFormType }}>
+        <ApplicationsContext
+          value={{ setFormActive, dispatch, setFormType, setDraggedTile }}
+        >
           <div className="flex flex-col md:grid grid-cols-5 gap-x-2 gap-y-2">
             <ApplicationsColumn
+              handleDrop={handleDrop}
               setMobileColumnActive={setMobileColumnActive}
               mobileColumnActive={mobileColumnActive}
               heading="Applied"
@@ -48,6 +73,7 @@ export default function Applications() {
               applications={applications.applied}
             />
             <ApplicationsColumn
+              handleDrop={handleDrop}
               setMobileColumnActive={setMobileColumnActive}
               mobileColumnActive={mobileColumnActive}
               heading="Response"
@@ -55,6 +81,7 @@ export default function Applications() {
               applications={applications.response}
             />
             <ApplicationsColumn
+              handleDrop={handleDrop}
               setMobileColumnActive={setMobileColumnActive}
               mobileColumnActive={mobileColumnActive}
               heading="Interview"
@@ -62,6 +89,7 @@ export default function Applications() {
               applications={applications.interview}
             />
             <ApplicationsColumn
+              handleDrop={handleDrop}
               setMobileColumnActive={setMobileColumnActive}
               mobileColumnActive={mobileColumnActive}
               heading="Offer"
@@ -69,6 +97,7 @@ export default function Applications() {
               applications={applications.offer}
             />
             <ApplicationsColumn
+              handleDrop={handleDrop}
               setMobileColumnActive={setMobileColumnActive}
               mobileColumnActive={mobileColumnActive}
               heading="Rejected"

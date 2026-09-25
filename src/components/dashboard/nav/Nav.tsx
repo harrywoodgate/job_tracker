@@ -6,7 +6,7 @@ export default function Nav() {
   const [mobileNavActive, setMobileNavActive] = useState(false);
 
   return (
-    <div className="lg:w-[240px] col-span-2 lg:col-auto bg-primary-blue px-2 py-8 text-white lg:min-h-screen flex flex-col gap-y-8">
+    <div className="lg:w-[240px] col-span-2 lg:col-auto bg-primary-blue px-2 py-6 md:py-8 text-white lg:min-h-screen flex flex-col gap-y-8">
       <div className="flex lg:hidden justify-between items-center gap-x-3 lg:pl-2 px-4">
         <div className="flex gap-x-3">
           <img src={logo} alt="logo" className="w-[30px]" />

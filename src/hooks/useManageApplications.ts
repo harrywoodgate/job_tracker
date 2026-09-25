@@ -55,7 +55,6 @@ export default function useManageApplications() {
   };
 
   const updateApplication = async (application: application) => {
-    console.log(application);
     const error = await updateApplicationRow(application);
     if (error) {
       alert(`An error ${error} has occured please try again`);

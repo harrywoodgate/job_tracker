@@ -3,6 +3,7 @@ import { useState } from "react";
 import type { applicationStatus } from "../../../types/applicationStatus";
 import type { application } from "../../../types/application";
 import { useRef, useEffect } from "react";
+import useApplicationsContext from "../../../hooks/useApplicationsContext";
 
 export default function ApplicationTile({
   application,
@@ -26,9 +27,10 @@ export default function ApplicationTile({
     hybrid: "Hybrid",
     onsite: "Onsite",
   };
+  const { setDraggedTile } = useApplicationsContext();
 
   // click anywhere else on screen to close drop down logic
-  
+
   const dropDownRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     function handleClickOutside(event: PointerEvent) {
@@ -48,9 +50,15 @@ export default function ApplicationTile({
   }, []);
 
   return (
-    <div className="bg-white rounded-md p-2 text-sm flex flex-col gap-y-1 shadow-sm">
+    <div
+      className="bg-white rounded-md p-2 text-sm flex flex-col gap-y-1 shadow-sm"
+      draggable
+      onDragStart={() => setDraggedTile(application)}
+    >
       <div className="flex justify-between items-center relative">
-        <h3 className="md:max-lg:text-xs text-sm font-semibold">{application.job_title}</h3>
+        <h3 className="md:max-lg:text-xs text-sm font-semibold">
+          {application.job_title}
+        </h3>
         <div ref={dropDownRef}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +75,9 @@ export default function ApplicationTile({
           />
         </div>
       </div>
-      <p className="md:max-lg:text-xs text-sm text-gray font-light">{application.company}</p>
+      <p className="md:max-lg:text-xs text-sm text-gray font-light">
+        {application.company}
+      </p>
       <div className="flex justify-between gap-x-1 items-center">
         <p className="text-gray font-extralight md:max-lg:text-[10px] text-[12px]">
           {heading} {application[applicationDate]}

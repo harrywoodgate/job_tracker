@@ -1,6 +1,7 @@
 import type { application } from "../../../types/application";
 import ApplicationTile from "./ApplicationTile";
 import useApplicationsContext from "../../../hooks/useApplicationsContext";
+import type { applicationStatus } from "../../../types/applicationStatus";
 
 export default function ApplicationsColumn({
   heading,
@@ -8,12 +9,14 @@ export default function ApplicationsColumn({
   applications,
   mobileColumnActive,
   setMobileColumnActive,
+  handleDrop,
 }: {
   heading: string;
   colourIndex: number;
   applications: application[];
   mobileColumnActive: string;
   setMobileColumnActive: React.Dispatch<React.SetStateAction<string>>;
+  handleDrop: (newStatus: applicationStatus) => void;
 }) {
   const { setFormActive, dispatch, setFormType } = useApplicationsContext();
   const colours = [
@@ -26,7 +29,14 @@ export default function ApplicationsColumn({
   const count = applications.length;
 
   return (
-    <div className="border-2 border-gray-200 rounded-md px-2 py-4 md:grid grid-rows-[auto_1fr_auto] gap-y-4">
+    <div
+      className="border-2 border-gray-200 rounded-md px-2 py-4 md:grid grid-rows-[auto_1fr_auto] gap-y-4"
+      onDragOver={(e) => e.preventDefault()}
+      onDrop={(e) => {
+        e.preventDefault();
+        handleDrop(heading.toLowerCase() as applicationStatus)}
+      }
+    >
       <div className="flex flex-col gap-y-4 items-center">
         <div className="flex justify-between w-full items-center px-2">
           <div className="flex items-center gap-x-2">
@@ -58,8 +68,8 @@ export default function ApplicationsColumn({
       <div
         className={
           mobileColumnActive === heading
-            ? "flex flex-col gap-y-2 max-h-[384px] overflow-scroll pt-6 transition-[max-height] duration-200"
-            : "md:flex flex-col gap-y-2 h-[384px] overflow-scroll max-h-0 md:max-h-full"
+            ? "flex flex-col gap-y-2 max-h-[394px] overflow-scroll pt-6 transition-[max-height] duration-200"
+            : "md:flex flex-col gap-y-2 h-[394px] overflow-scroll max-h-0 md:max-h-full"
         }
       >
         {applications &&
