@@ -13,7 +13,7 @@ export default function Applications() {
   const [formActive, setFormActive] = useState(false);
   const [formType, setFormType] = useState("new");
   const { formApplication, dispatch } = useManageFormInfo();
-  const [mobileColumnActive, setMobileColumnActive] = useState("interview");
+  const [mobileColumnActive, setMobileColumnActive] = useState("");
   const [draggedTile, setDraggedTile] = useState<null | application>(null);
 
   const { applicationHistory, updateApplication } =
@@ -32,6 +32,7 @@ export default function Applications() {
     applications[currentStatus].push(application);
   });
 
+  //dont know if its worth putting this is a seperate file
   function handleDrop(newStatus: applicationStatus) {
     let application: application;
     if (draggedTile) {

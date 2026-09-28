@@ -3,11 +3,11 @@ import type { dispatchAction } from "../../../types/dispatchAction";
 export default function ApplicationsHeader({
   setFormActive,
   dispatch,
-  setFormType
+  setFormType,
 }: {
   setFormActive: React.Dispatch<React.SetStateAction<boolean>>;
   dispatch: React.ActionDispatch<[action: dispatchAction]>;
-  setFormType: React.Dispatch<React.SetStateAction<string>> 
+  setFormType: React.Dispatch<React.SetStateAction<string>>;
 }) {
   return (
     <div className="flex justify-between items-center">
@@ -17,22 +17,31 @@ export default function ApplicationsHeader({
           Track and manage all your job applications
         </p>
       </div>
-      <button
-        className="flex cursor-pointer gap-x-1 bg-primary-blue text-white text-sm h-min py-1 md:py-2 px-2 md:px-3 rounded-md"
-        onClick={() => {
-          dispatch({type: "current_status", value: "applied"})
-          setFormType("new")
-          setFormActive(true)}}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          className="fill-white w-[20px]"
+      <div className="flex items-center gap-x-1">
+        <button
+          className="flex cursor-pointer gap-x-1 bg-primary-blue text-white text-sm h-min py-1 md:py-2 px-2 md:px-3 rounded-md"
+          onClick={() => {
+            dispatch({ type: "current_status", value: "applied" });
+            setFormType("new");
+            setFormActive(true);
+          }}
         >
-          <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
-        </svg>
-        <span className="hidden md:block">New Application</span>
-      </button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            className="fill-white w-[20px]"
+          >
+            <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+          </svg>
+          <span className="hidden md:block">New Application</span>
+        </button>
+        <button className="flex cursor-pointer text-xs items-center h-min py-1 gap-x-1 md:py-2 px-2 md:px-3 rounded-md border-1 border-gray-200 shadow-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-[16px]">
+            <path d="M9,3L5,7H8V14H10V7H13M16,17V10H14V17H11L15,21L19,17H16Z" />
+          </svg>
+          <span className="font-medium">Sort</span>
+        </button>
+      </div>
     </div>
   );
 }
