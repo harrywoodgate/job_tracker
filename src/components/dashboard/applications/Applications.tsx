@@ -34,6 +34,7 @@ export default function Applications() {
     applications[currentStatus].push(application);
   });
 
+  //dont know if its worth putting this is a seperate file
   function handleDrop(newStatus: applicationStatus) {
     let application: application;
     if (draggedTile) {
