@@ -1,9 +1,9 @@
 import { useReducer } from "react";
-import type { dispatchAction } from "../types/dispatchAction";
+import type { formDispatchAction } from "../types/formDispatchAction";
 import type { application } from "../types/application";
 
 export default function useManageFormInfo() {
-  const [formApplication, dispatch] = useReducer(reducer, {
+  const [formApplication, formDispatch] = useReducer(reducer, {
     id: "",
     current_status: "applied",
     job_title: "",
@@ -16,7 +16,7 @@ export default function useManageFormInfo() {
     rejected: "",
   });
 
-  function reducer(state: application, action: dispatchAction) {
+  function reducer(state: application, action: formDispatchAction) {
     switch (action.type) {
       case "id": {
         return {
@@ -72,6 +72,6 @@ export default function useManageFormInfo() {
 
   return {
     formApplication,
-    dispatch,
+    formDispatch,
   };
 }

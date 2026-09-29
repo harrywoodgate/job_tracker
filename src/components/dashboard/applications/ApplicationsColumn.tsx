@@ -18,7 +18,7 @@ export default function ApplicationsColumn({
   setMobileColumnActive: React.Dispatch<React.SetStateAction<string>>;
   handleDrop: (newStatus: applicationStatus) => void;
 }) {
-  const { setFormActive, dispatch, setFormType } = useApplicationsContext();
+  const { setFormActive, formDispatch, setFormType } = useApplicationsContext();
   const colours = [
     "bg-blue-500",
     "bg-teal",
@@ -68,8 +68,8 @@ export default function ApplicationsColumn({
       <div
         className={
           mobileColumnActive === heading
-            ? "flex flex-col gap-y-2 max-h-[394px] overflow-scroll pt-6 transition-[max-height] duration-200"
-            : "md:flex flex-col gap-y-2 h-[394px] overflow-scroll max-h-0 md:max-h-full"
+            ? "flex flex-col gap-y-2 max-h-[394px] overflow-auto pt-6 transition-[max-height] duration-200"
+            : "md:flex flex-col gap-y-2 h-[394px] overflow-auto max-h-0 md:max-h-full"
         }
       >
         {applications &&
@@ -84,7 +84,7 @@ export default function ApplicationsColumn({
       <div
         className="hidden md:flex justify-center gap-x-1 cursor-pointer text-sm text-gray"
         onClick={() => {
-          dispatch({ type: "current_status", value: heading.toLowerCase() });
+          formDispatch({ type: "current_status", value: heading.toLowerCase() });
           setFormType("new");
           setFormActive(true);
         }}

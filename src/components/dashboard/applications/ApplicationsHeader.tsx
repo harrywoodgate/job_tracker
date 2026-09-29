@@ -1,4 +1,4 @@
-import type { dispatchAction } from "../../../types/dispatchAction";
+import type { formDispatchAction } from "../../../types/formDispatchAction";
 
 export default function ApplicationsHeader({
   setFormActive,
@@ -6,7 +6,7 @@ export default function ApplicationsHeader({
   setFormType
 }: {
   setFormActive: React.Dispatch<React.SetStateAction<boolean>>;
-  dispatch: React.ActionDispatch<[action: dispatchAction]>;
+  dispatch: React.ActionDispatch<[action: formDispatchAction]>;
   setFormType: React.Dispatch<React.SetStateAction<string>> 
 }) {
   return (

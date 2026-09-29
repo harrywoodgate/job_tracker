@@ -1,6 +1,6 @@
 import type { application } from "./application";
 
-export type dispatchAction =
+export type formDispatchAction =
   | { type: "id"; value: string }
   | { type: "current_status"; value: string }
   | { type: "job_title"; value: string }

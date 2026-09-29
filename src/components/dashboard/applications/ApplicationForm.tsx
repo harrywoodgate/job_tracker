@@ -1,6 +1,6 @@
 import { useOutletContext } from "react-router";
 import type { outletContext } from "../../../types/outletContext";
-import type { dispatchAction } from "../../../types/dispatchAction";
+import type { formDispatchAction } from "../../../types/formDispatchAction";
 import type { application } from "../../../types/application";
 import type { applicationStatus } from "../../../types/applicationStatus";
 
@@ -14,7 +14,7 @@ export default function ApplicationForm({
   active: boolean;
   setActive: React.Dispatch<React.SetStateAction<boolean>>;
   application: application;
-  dispatch: React.ActionDispatch<[action: dispatchAction]>;
+  dispatch: React.ActionDispatch<[action: formDispatchAction]>;
   formType: string
 }) {
   const { addApplication, updateApplication } = useOutletContext<outletContext>();

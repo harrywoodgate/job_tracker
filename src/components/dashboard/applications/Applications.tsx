@@ -8,14 +8,15 @@ import type { application } from "../../../types/application";
 import type { applicationStatus } from "../../../types/applicationStatus";
 import useManageFormInfo from "../../../hooks/useManageFormInfo";
 import { ApplicationsContext } from "../../../contexts/applicationsContext";
+import sortHistory from "../../../utils/sortHistory";
 
 export default function Applications() {
   const [formActive, setFormActive] = useState(false);
   const [formType, setFormType] = useState("new");
-  const { formApplication, dispatch } = useManageFormInfo();
-  const [mobileColumnActive, setMobileColumnActive] = useState("interview");
+  const { formApplication, formDispatch } = useManageFormInfo();
+  const [mobileColumnActive, setMobileColumnActive] = useState("");
   const [draggedTile, setDraggedTile] = useState<null | application>(null);
-
+  const [sortType, setSortType] = useState("oldest first");
   const { applicationHistory, updateApplication } =
     useOutletContext<outletContext>();
 
@@ -27,7 +28,8 @@ export default function Applications() {
     rejected: [],
   };
 
-  applicationHistory.map((application) => {
+  const sortedHistory = sortHistory(applicationHistory, sortType);
+  sortedHistory.map((application) => {
     const currentStatus = application.current_status as applicationStatus;
     applications[currentStatus].push(application);
   });
@@ -45,7 +47,7 @@ export default function Applications() {
         } else {
           application.current_status = newStatus;
           setFormType("edit");
-          dispatch({ type: "editApplication", value: application });
+          formDispatch({ type: "editApplication", value: application });
           setFormActive(true);
         }
       }
@@ -58,10 +60,10 @@ export default function Applications() {
         <ApplicationsHeader
           setFormActive={setFormActive}
           setFormType={setFormType}
-          dispatch={dispatch}
+          dispatch={formDispatch}
         />
         <ApplicationsContext
-          value={{ setFormActive, dispatch, setFormType, setDraggedTile }}
+          value={{ setFormActive, formDispatch, setFormType, setDraggedTile }}
         >
           <div className="flex flex-col md:grid grid-cols-5 gap-x-2 gap-y-2">
             <ApplicationsColumn
@@ -111,7 +113,7 @@ export default function Applications() {
         active={formActive}
         setActive={setFormActive}
         application={formApplication}
-        dispatch={dispatch}
+        dispatch={formDispatch}
         formType={formType}
       />
     </div>

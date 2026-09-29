@@ -13,7 +13,7 @@ export default function OptionsDropDown({
   application: application;
 }) {
   const { deleteApplication } = useOutletContext<outletContext>();
-  const { setFormActive, dispatch, setFormType } = useApplicationsContext();
+  const { setFormActive, formDispatch, setFormType } = useApplicationsContext();
 
   return (
     <div
@@ -26,7 +26,7 @@ export default function OptionsDropDown({
       <div
         className="flex items-center gap-x-2 w-full hover:bg-gray-100 rounded-sm md:max-lg:pr-8 pr-12 pl-2 py-1"
         onClick={() => {
-          dispatch({ type: "editApplication", value: application });
+          formDispatch({ type: "editApplication", value: application });
           setFormType("edit");
           setFormActive(true);
           setActive(false);
