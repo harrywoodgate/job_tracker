@@ -62,6 +62,7 @@ export default function Applications() {
           setFormActive={setFormActive}
           setFormType={setFormType}
           dispatch={formDispatch}
+          setSortType={setSortType}
         />
         <ApplicationsContext
           value={{ setFormActive, formDispatch, setFormType, setDraggedTile }}

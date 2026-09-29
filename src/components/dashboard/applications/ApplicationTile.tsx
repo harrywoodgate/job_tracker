@@ -2,8 +2,8 @@ import OptionsDropDown from "./OptionsDropDown";
 import { useState } from "react";
 import type { applicationStatus } from "../../../types/applicationStatus";
 import type { application } from "../../../types/application";
-import { useRef, useEffect } from "react";
 import useApplicationsContext from "../../../hooks/useApplicationsContext";
+import useClickOutside from "../../../hooks/useClickOutside";
 
 export default function ApplicationTile({
   application,
@@ -28,26 +28,7 @@ export default function ApplicationTile({
     onsite: "Onsite",
   };
   const { setDraggedTile } = useApplicationsContext();
-
-  // click anywhere else on screen to close drop down logic
-
-  const dropDownRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    function handleClickOutside(event: PointerEvent) {
-      if (
-        dropDownRef.current &&
-        !dropDownRef.current.contains(event.target as Node)
-      ) {
-        setOptionsDropDownActive(false);
-      }
-    }
-
-    document.addEventListener("pointerdown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("pointerdown", handleClickOutside);
-    };
-  }, []);
+  const { dropDownRef } = useClickOutside(setOptionsDropDownActive);
 
   return (
     <div
