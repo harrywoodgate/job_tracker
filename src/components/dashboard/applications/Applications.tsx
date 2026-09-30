@@ -8,7 +8,7 @@ import type { application } from "../../../types/application";
 import type { applicationStatus } from "../../../types/applicationStatus";
 import useManageFormInfo from "../../../hooks/useManageFormInfo";
 import { ApplicationsContext } from "../../../contexts/applicationsContext";
-import sortHistory from "../../../utils/sortHistory";
+import useSortApplications from "../../../hooks/useSortApplications";
 
 export default function Applications() {
   const [formActive, setFormActive] = useState(false);
@@ -19,19 +19,10 @@ export default function Applications() {
   const [sortType, setSortType] = useState("oldest first");
   const { applicationHistory, updateApplication } =
     useOutletContext<outletContext>();
-
-  let applications: Record<applicationStatus, application[]> = {
-    applied: [],
-    response: [],
-    interview: [],
-    offer: [],
-    rejected: [],
-  };
-
-  const sortedHistory = sortHistory(applicationHistory, sortType);
-  sortedHistory.map((application) => {
-    applications[application.current_status].push(application);
-  });
+  const { sortedApplications } = useSortApplications(
+    applicationHistory,
+    sortType,
+  );
 
   //dont know if its worth putting this is a seperate file
   function handleDrop(newStatus: applicationStatus) {
@@ -73,7 +64,7 @@ export default function Applications() {
               mobileColumnActive={mobileColumnActive}
               heading="Applied"
               colourIndex={0}
-              applications={applications.applied}
+              applications={sortedApplications.applied}
             />
             <ApplicationsColumn
               handleDrop={handleDrop}
@@ -81,7 +72,7 @@ export default function Applications() {
               mobileColumnActive={mobileColumnActive}
               heading="Response"
               colourIndex={1}
-              applications={applications.response}
+              applications={sortedApplications.response}
             />
             <ApplicationsColumn
               handleDrop={handleDrop}
@@ -89,7 +80,7 @@ export default function Applications() {
               mobileColumnActive={mobileColumnActive}
               heading="Interview"
               colourIndex={2}
-              applications={applications.interview}
+              applications={sortedApplications.interview}
             />
             <ApplicationsColumn
               handleDrop={handleDrop}
@@ -97,7 +88,7 @@ export default function Applications() {
               mobileColumnActive={mobileColumnActive}
               heading="Offer"
               colourIndex={3}
-              applications={applications.offer}
+              applications={sortedApplications.offer}
             />
             <ApplicationsColumn
               handleDrop={handleDrop}
@@ -105,7 +96,7 @@ export default function Applications() {
               mobileColumnActive={mobileColumnActive}
               heading="Rejected"
               colourIndex={4}
-              applications={applications.rejected}
+              applications={sortedApplications.rejected}
             />
           </div>
         </ApplicationsContext>

@@ -15,13 +15,13 @@ export default function UDFirstRowTile({
 }) {
   const fontColours = {
     blue: "text-blue-500",
-    orange: "",
-    green: "",
+    orange: "text-orange-400",
+    green: "text-green-700",
   };
   const iconColours = {
     blue: "bg-blue-100",
-    orange: "",
-    green: "",
+    orange: "bg-purple-100",
+    green: "bg-sky-100",
   };
 
   return (
@@ -34,7 +34,7 @@ export default function UDFirstRowTile({
         {comment}
       </div>
       <div
-        className={`${iconColours[colourScheme]} h-[45px] w-[45px] flex items-center justify-center rounded-full`}
+        className={`${iconColours[colourScheme]} h-[50px] w-[50px] flex items-center justify-center rounded-full`}
       >
         {svg}
       </div>

@@ -16,7 +16,7 @@ export default function Login() {
       password,
     });
     if (error) return setError(error.message);
-    navigate("/dashboard");
+    navigate("/dashboard/userDashboard");
   }
 
   return (
