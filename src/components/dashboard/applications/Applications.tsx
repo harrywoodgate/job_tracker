@@ -30,8 +30,7 @@ export default function Applications() {
 
   const sortedHistory = sortHistory(applicationHistory, sortType);
   sortedHistory.map((application) => {
-    const currentStatus = application.current_status as applicationStatus;
-    applications[currentStatus].push(application);
+    applications[application.current_status].push(application);
   });
 
   //dont know if its worth putting this is a seperate file
@@ -56,7 +55,7 @@ export default function Applications() {
   }
 
   return (
-    <div className="p-6 h-full flex justify-center lg:col-span-1 col-span-2">
+    <div className="p-6 min-h-svh flex justify-center lg:col-span-1 col-span-2">
       <div className="w-full max-w-[1500px] flex flex-col gap-y-8">
         <ApplicationsHeader
           setFormActive={setFormActive}

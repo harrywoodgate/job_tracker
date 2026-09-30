@@ -2,7 +2,6 @@ import { useOutletContext } from "react-router";
 import type { outletContext } from "../../../types/outletContext";
 import type { formDispatchAction } from "../../../types/formDispatchAction";
 import type { application } from "../../../types/application";
-import type { applicationStatus } from "../../../types/applicationStatus";
 
 export default function ApplicationForm({
   active,
@@ -18,7 +17,7 @@ export default function ApplicationForm({
   formType: string
 }) {
   const { addApplication, updateApplication } = useOutletContext<outletContext>();
-  const status = application.current_status as applicationStatus
+  const status = application.current_status
 // maybe shorten the form for drag and drop also exit button just edits form with new status and no date
   return (
     <div

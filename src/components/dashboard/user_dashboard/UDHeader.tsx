@@ -1,9 +1,21 @@
-export default function UDHeader () {
-    return (
-        <div className="w-full">
-            <div>
-                <h1>Welcome back, Harry</h1>
-            </div>
+export default function UDHeader() {
+  return (
+    <div>
+      <div>
+        <div className="flex items-center gap-x-2">
+          <h1 className="font-semibold text-lg md:text-2xl">
+            Welcome back, Harry!
+          </h1>
+          <img
+          className="w-[25px] h-[25px] mb-[2px]"
+            src="data:image/png;base64,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"
+            alt="waving-hand-emoji"
+          ></img>
         </div>
-    )
+        <p className="text-gray text-xs md:text-sm mt-1">
+          Here's an overview of your job search
+        </p>
+      </div>
+    </div>
+  );
 }
