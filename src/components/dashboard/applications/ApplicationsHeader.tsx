@@ -42,45 +42,46 @@ export default function ApplicationsHeader({
           </svg>
           <span className="hidden md:block">New Application</span>
         </button>
-        <button
-          className="flex cursor-pointer text-sm items-center h-min py-1 gap-x-1 md:py-2 px-2 md:px-3 rounded-md border-1 border-gray-200 shadow-sm"
-          onClick={() => setSortDropdownActive(!sortDropdownActive)}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            className="w-[16px]"
+        <div ref={dropDownRef}>
+          <button
+            className="flex cursor-pointer text-sm items-center h-min py-1 gap-x-1 md:py-2 px-2 md:px-3 rounded-md border-1 border-gray-200 shadow-sm"
+            onClick={() => setSortDropdownActive(!sortDropdownActive)}
           >
-            <path d="M9,3L5,7H8V14H10V7H13M16,17V10H14V17H11L15,21L19,17H16Z" />
-          </svg>
-          <span className="font-medium">Sort</span>
-        </button>
-        <div
-          className={
-            sortDropdownActive
-              ? "absolute right-0 top-[120%] bg-white text-xs font-medium rounded-sm shadow-sm p-1 flex flex-col gap-y-1"
-              : "hidden"
-          }
-          ref={dropDownRef}
-        >
-          <p
-            className="hover:bg-gray-100 rounded-sm w-full pl-2 pr-8 py-1 cursor-pointer"
-            onClick={() => {
-              setSortType("oldest first");
-              setSortDropdownActive(false);
-            }}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              className="w-[16px]"
+            >
+              <path d="M9,3L5,7H8V14H10V7H13M16,17V10H14V17H11L15,21L19,17H16Z" />
+            </svg>
+            <span className="font-medium hidden md:block">Sort</span>
+          </button>
+          <div
+            className={
+              sortDropdownActive
+                ? "absolute right-0 top-[120%] bg-white text-xs text-nowrap font-medium rounded-sm shadow-sm p-1 flex flex-col gap-y-1"
+                : "hidden"
+            }
           >
-            Oldest first
-          </p>
-          <p
-            className="hover:bg-gray-100 rounded-sm w-full pl-2 py-1 cursor-pointer"
-            onClick={() => {
-              setSortType("newest first");
-              setSortDropdownActive(false);
-            }}
-          >
-            Newest first
-          </p>
+            <div
+              className="hover:bg-gray-100 rounded-sm w-full pl-2 pr-8 py-1"
+              onClick={() => {
+                setSortType("oldest first");
+                setSortDropdownActive(false);
+              }}
+            >
+              Oldest first
+            </div>
+            <div
+              className="hover:bg-gray-100 rounded-sm w-full pl-2 py-1"
+              onClick={() => {
+                setSortType("newest first");
+                setSortDropdownActive(false);
+              }}
+            >
+              Newest first
+            </div>
+          </div>
         </div>
       </div>
     </div>
