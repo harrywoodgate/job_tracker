@@ -2,11 +2,13 @@ import UDFirstRowTile from "./UDFirstRowTile";
 import { useOutletContext } from "react-router";
 import type { outletContext } from "../../../../types/outletContext";
 import useSortApplications from "../../../../hooks/useSortApplications";
+import useGetApplicationsData from "../../../../hooks/useGetApplicationsData";
 
 export default function UDFirstRow() {
   const { applicationHistory } = useOutletContext<outletContext>();
-  const { sortedApplications, currentWeekApplications } =
-    useSortApplications(applicationHistory);
+  const { sortedApplications } = useSortApplications(applicationHistory);
+  const { currentWeekApplications } =
+    useGetApplicationsData(applicationHistory);
 
   return (
     <div className="grid grid-cols-4 gap-x-4">
