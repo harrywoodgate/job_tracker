@@ -25,7 +25,7 @@ export default function UDSRPieChart() {
   ];
 
   return (
-    <div className="bg-white rounded-sm shadow-sm p-4">
+    <div className="bg-white rounded-sm shadow-sm p-4 pb-8">
       <h2 className="font-semibold mb-2">Application Status Breakdown</h2>
       <div className="flex justify-between">
         <div className="relative">
