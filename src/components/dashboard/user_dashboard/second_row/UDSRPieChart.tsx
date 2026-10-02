@@ -40,7 +40,7 @@ export default function UDSRPieChart() {
             <Tooltip />
           </PieChart>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <p className="text-2xl font-semibold">{applicationHistory.length}</p>
+            <p className="text-4xl font-semibold">{applicationHistory.length}</p>
             <p className="text-sm">Total</p>
           </div>
         </div>
@@ -92,9 +92,7 @@ export default function UDSRPieChart() {
             ).toFixed(0)}
           />
           <div className="grid grid-cols-[3fr_1fr_1fr] w-full mt-2">
-            <div className="flex items-center gap-x-4">
-              <p>Total</p>
-            </div>
+            <p className="font-semibold">Total</p>
             <p className="font-semibold">{applicationHistory.length}</p>
             <p className="text-gray">100%</p>
           </div>
