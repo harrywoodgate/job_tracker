@@ -7,8 +7,9 @@ import useGetApplicationsData from "../../../../hooks/useGetApplicationsData";
 export default function UDFirstRow() {
   const { applicationHistory } = useOutletContext<outletContext>();
   const { sortedApplications } = useSortApplications(applicationHistory);
-  const { currentWeekApplications } =
+  const { getCurrentWeekCount } =
     useGetApplicationsData(applicationHistory);
+  const currentWeekCount = getCurrentWeekCount();
 
   return (
     <div className="grid grid-cols-4 gap-x-4">
@@ -29,13 +30,13 @@ export default function UDFirstRow() {
           <p className="text-xs text-gray">
             <span
               className={
-                currentWeekApplications.total > 0
+                currentWeekCount.total > 0
                   ? "text-green-700"
                   : "text-red-500"
               }
             >
-              {currentWeekApplications.total > 0 ? "\u2191 " : ""}
-              {currentWeekApplications.total}
+              {currentWeekCount.total > 0 ? "\u2191 " : ""}
+              {currentWeekCount.total}
             </span>{" "}
             this week
           </p>
@@ -85,13 +86,13 @@ export default function UDFirstRow() {
           <p className="text-xs text-gray">
             <span
               className={
-                currentWeekApplications.interview > 0
+                currentWeekCount.interview > 0
                   ? "text-green-700"
                   : "text-red-500"
               }
             >
-              {currentWeekApplications.interview > 0 ? "\u2191 " : "\u2193 "}
-              {currentWeekApplications.interview}
+              {currentWeekCount.interview > 0 ? "\u2191 " : "\u2193 "}
+              {currentWeekCount.interview}
             </span>{" "}
             this week
           </p>
