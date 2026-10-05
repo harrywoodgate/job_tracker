@@ -1,12 +1,12 @@
 import UDFirstRowTile from "./UDFirstRowTile";
 import { useOutletContext } from "react-router";
 import type { outletContext } from "../../../../types/outletContext";
-import useSortApplications from "../../../../hooks/useSortApplications";
+import useSeperateApplications from "../../../../hooks/useSeperateApplications";
 import useGetApplicationsData from "../../../../hooks/useGetApplicationsData";
 
 export default function UDFirstRow() {
   const { applicationHistory } = useOutletContext<outletContext>();
-  const { sortedApplications } = useSortApplications(applicationHistory);
+  const { seperatedApplications } = useSeperateApplications(applicationHistory);
   const { getCurrentWeekCount } =
     useGetApplicationsData(applicationHistory);
   const currentWeekCount = getCurrentWeekCount();
@@ -45,7 +45,7 @@ export default function UDFirstRow() {
       <UDFirstRowTile
         heading="Responses"
         colourScheme="blue"
-        count={sortedApplications.response.length}
+        count={seperatedApplications.response.length}
         svg={
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -59,7 +59,7 @@ export default function UDFirstRow() {
           <p className="text-xs text-gray">
             <span>
               {(
-                (sortedApplications.response.length /
+                (seperatedApplications.response.length /
                   applicationHistory.length) *
                 100
               ).toFixed(2)}
@@ -72,7 +72,7 @@ export default function UDFirstRow() {
       <UDFirstRowTile
         heading="Interviews"
         colourScheme="orange"
-        count={sortedApplications.interview.length}
+        count={seperatedApplications.interview.length}
         svg={
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -101,7 +101,7 @@ export default function UDFirstRow() {
       <UDFirstRowTile
         heading="Offers"
         colourScheme="green"
-        count={sortedApplications.offer.length}
+        count={seperatedApplications.offer.length}
         svg={
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -113,7 +113,7 @@ export default function UDFirstRow() {
         }
         comment={
           <p className="text-xs text-gray">
-            {sortedApplications.offer.length > 0
+            {seperatedApplications.offer.length > 0
               ? "Keep it up!"
               : "Keep trying!"}
           </p>

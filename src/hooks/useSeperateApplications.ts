@@ -2,11 +2,11 @@ import type { application } from "../types/application";
 import type { applicationStatus } from "../types/applicationStatus";
 import sortHistory from "../utils/sortHistory";
 
-export default function useSortApplications(
+export default function useSeperateApplications(
   applicationHistory: application[],
   sortType: string = "oldest first",
 ) {
-  let sortedApplications: Record<applicationStatus, application[]> = {
+  let seperatedApplications: Record<applicationStatus, application[]> = {
     applied: [],
     response: [],
     interview: [],
@@ -16,9 +16,9 @@ export default function useSortApplications(
 
   const sortedHistory = sortHistory(applicationHistory, sortType);
   sortedHistory.map((application) => {
-    sortedApplications[application.current_status].push(application);
+    seperatedApplications[application.current_status].push(application);
   });
 
-  return { sortedApplications };
+  return { seperatedApplications };
 }
 

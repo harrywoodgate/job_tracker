@@ -1,19 +1,19 @@
 import { useOutletContext } from "react-router";
 import type { outletContext } from "../../../../types/outletContext";
-import useSortApplications from "../../../../hooks/useSortApplications";
+import useSeperateApplications from "../../../../hooks/useSeperateApplications";
 import { PieChart, Pie, Sector, Tooltip } from "recharts";
 import PieChartRow from "./PieChartRow";
 
 export default function UDSRPieChart() {
   const { applicationHistory } = useOutletContext<outletContext>();
-  const { sortedApplications } = useSortApplications(applicationHistory);
+  const { seperatedApplications } = useSeperateApplications(applicationHistory);
 
   const data = [
-    { status: "Applied", count: sortedApplications.applied.length },
-    { status: "Response", count: sortedApplications.response.length },
-    { status: "Interview", count: sortedApplications.interview.length },
-    { status: "Offer", count: sortedApplications.offer.length },
-    { status: "Rejected", count: sortedApplications.rejected.length },
+    { status: "Applied", count: seperatedApplications.applied.length },
+    { status: "Response", count: seperatedApplications.response.length },
+    { status: "Interview", count: seperatedApplications.interview.length },
+    { status: "Offer", count: seperatedApplications.offer.length },
+    { status: "Rejected", count: seperatedApplications.rejected.length },
   ];
 
   const colours = [
@@ -48,27 +48,27 @@ export default function UDSRPieChart() {
           <PieChartRow
             colourIndex={0}
             heading="Applied"
-            total={sortedApplications.applied.length}
+            total={seperatedApplications.applied.length}
             percentage={(
-              (sortedApplications.applied.length / applicationHistory.length) *
+              (seperatedApplications.applied.length / applicationHistory.length) *
               100
             ).toFixed(0)}
           />
           <PieChartRow
             colourIndex={1}
             heading="Response"
-            total={sortedApplications.response.length}
+            total={seperatedApplications.response.length}
             percentage={(
-              (sortedApplications.response.length / applicationHistory.length) *
+              (seperatedApplications.response.length / applicationHistory.length) *
               100
             ).toFixed(0)}
           />
           <PieChartRow
             colourIndex={2}
             heading="Interview"
-            total={sortedApplications.interview.length}
+            total={seperatedApplications.interview.length}
             percentage={(
-              (sortedApplications.interview.length /
+              (seperatedApplications.interview.length /
                 applicationHistory.length) *
               100
             ).toFixed(0)}
@@ -76,18 +76,18 @@ export default function UDSRPieChart() {
           <PieChartRow
             colourIndex={3}
             heading="Offer"
-            total={sortedApplications.offer.length}
+            total={seperatedApplications.offer.length}
             percentage={(
-              (sortedApplications.offer.length / applicationHistory.length) *
+              (seperatedApplications.offer.length / applicationHistory.length) *
               100
             ).toFixed(0)}
           />
           <PieChartRow
             colourIndex={4}
             heading="Rejected"
-            total={sortedApplications.rejected.length}
+            total={seperatedApplications.rejected.length}
             percentage={(
-              (sortedApplications.rejected.length / applicationHistory.length) *
+              (seperatedApplications.rejected.length / applicationHistory.length) *
               100
             ).toFixed(0)}
           />
