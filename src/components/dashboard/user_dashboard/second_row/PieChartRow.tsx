@@ -20,13 +20,13 @@ const colours = [
 
   return (
     <>
-    <div className="grid grid-cols-[3fr_1fr_1fr] w-full">
+    <div className="grid grid-cols-[3fr_1fr_1fr] items-center w-full">
       <div className="flex items-center gap-x-4">
-          <div className={`w-[12px] h-[12px] rounded-full ${colours[colourIndex]}`}></div>
-          <p>{heading}</p>
+          <div className={`h-[10px] w-[10px] rounded-full ${colours[colourIndex]}`}></div>
+          <p className="text-sm">{heading}</p>
       </div>
-      <p className="font-semibold">{total}</p>
-      <p className="text-gray">{percentage}%</p>
+      <p className="font-semibold text-sm">{total}</p>
+      <p className="text-gray text-sm">{percentage}%</p>
     </div>
     <div className="h-[1px] bg-gray-200 rounded-md  w-[90%] flex justify-center"></div>
     </>

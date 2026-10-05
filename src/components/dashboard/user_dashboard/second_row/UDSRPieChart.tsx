@@ -1,7 +1,7 @@
 import { useOutletContext } from "react-router";
 import type { outletContext } from "../../../../types/outletContext";
 import useSeperateApplications from "../../../../hooks/useSeperateApplications";
-import { PieChart, Pie, Sector, Tooltip } from "recharts";
+import { PieChart, Pie, Sector, Tooltip, ResponsiveContainer } from "recharts";
 import PieChartRow from "./PieChartRow";
 
 export default function UDSRPieChart() {
@@ -26,21 +26,29 @@ export default function UDSRPieChart() {
 
   return (
     <div className="bg-white rounded-sm shadow-sm p-4 pb-8">
-      <h2 className="font-semibold mb-2 text-lg">Application Status Breakdown</h2>
+      <h2 className="font-semibold mb-2 text-lg">
+        Application Status Breakdown
+      </h2>
       <div className="flex justify-between">
         <div className="relative">
-          <PieChart width={320} height={320}>
-            <Pie
-              data={data}
-              dataKey="count"
-              nameKey="status"
-              innerRadius={80}
-              shape={(props) => <Sector {...props} fill={colours[props.index]} />}
-            />
-            <Tooltip />
-          </PieChart>
+          <ResponsiveContainer width={300} height={300}>
+            <PieChart>
+              <Pie
+                data={data}
+                dataKey="count"
+                nameKey="status"
+                innerRadius={80}
+                shape={(props) => (
+                  <Sector {...props} fill={colours[props.index]} />
+                )}
+              />
+              <Tooltip />
+            </PieChart>
+          </ResponsiveContainer>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <p className="text-4xl font-semibold">{applicationHistory.length}</p>
+            <p className="text-4xl font-semibold">
+              {applicationHistory.length}
+            </p>
             <p className="text-sm">Total</p>
           </div>
         </div>
@@ -50,7 +58,8 @@ export default function UDSRPieChart() {
             heading="Applied"
             total={seperatedApplications.applied.length}
             percentage={(
-              (seperatedApplications.applied.length / applicationHistory.length) *
+              (seperatedApplications.applied.length /
+                applicationHistory.length) *
               100
             ).toFixed(0)}
           />
@@ -59,7 +68,8 @@ export default function UDSRPieChart() {
             heading="Response"
             total={seperatedApplications.response.length}
             percentage={(
-              (seperatedApplications.response.length / applicationHistory.length) *
+              (seperatedApplications.response.length /
+                applicationHistory.length) *
               100
             ).toFixed(0)}
           />
@@ -87,11 +97,12 @@ export default function UDSRPieChart() {
             heading="Rejected"
             total={seperatedApplications.rejected.length}
             percentage={(
-              (seperatedApplications.rejected.length / applicationHistory.length) *
+              (seperatedApplications.rejected.length /
+                applicationHistory.length) *
               100
             ).toFixed(0)}
           />
-          <div className="grid grid-cols-[3fr_1fr_1fr] w-full mt-2">
+          <div className="grid grid-cols-[3fr_1fr_1fr] w-full mt-2 text-sm">
             <p className="font-semibold">Total</p>
             <p className="font-semibold">{applicationHistory.length}</p>
             <p className="text-gray">100%</p>
