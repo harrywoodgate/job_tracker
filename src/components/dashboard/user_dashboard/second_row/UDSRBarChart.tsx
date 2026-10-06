@@ -11,19 +11,23 @@ import { useOutletContext } from "react-router";
 import type { outletContext } from "../../../../types/outletContext";
 import { useState } from "react";
 
-export default function UDSRLineChart() {
+export default function UDSRBarChart() {
   const [timePeriod, setTimePeriod] = useState("last 7 days");
-  const [selectorActive, setSelectorActive] = useState(true);
+  const [selectorActive, setSelectorActive] = useState(false);
   const { applicationHistory } = useOutletContext<outletContext>();
-  const { getLast7DaysCount } = useGetApplicationsData(applicationHistory);
+  const { getLast7DaysCount, getLast30DaysCount } =
+    useGetApplicationsData(applicationHistory);
   const last7DaysCount = getLast7DaysCount();
+  const last30DaysCount = getLast30DaysCount();
+  let currentData =
+    timePeriod === "last 7 days" ? last7DaysCount : last30DaysCount;
 
   const data = [
-    { status: "Applied", count: last7DaysCount.applied },
-    { status: "Response", count: last7DaysCount.response },
-    { status: "Interview", count: last7DaysCount.interview },
-    { status: "Offer", count: last7DaysCount.offer },
-    { status: "Rejected", count: last7DaysCount.rejected },
+    { status: "Applied", count: currentData.applied },
+    { status: "Response", count: currentData.response },
+    { status: "Interview", count: currentData.interview },
+    { status: "Offer", count: currentData.offer },
+    { status: "Rejected", count: currentData.rejected },
   ];
 
   const colours = [
@@ -90,11 +94,16 @@ export default function UDSRLineChart() {
           <Bar
             dataKey="count"
             barSize={40}
-            shape={(props) => {
-              const { radius, ref, ...rest } = props;
-
-              return <rect {...rest} fill={colours[props.index]} rx={6} />;
-            }}
+            shape={(props) => (
+              <rect
+                x={props.x}
+                y={props.y}
+                width={props.width}
+                height={props.height}
+                fill={colours[props.index]}
+                rx={5}
+              />
+            )}
           />
         </BarChart>
       </ResponsiveContainer>

@@ -1,6 +1,6 @@
-export default function getLast7Days() {
+export default function getLastDays(number: number) {
   let weekStart: Date | string = new Date();
-  weekStart.setDate(weekStart.getDate() - 7);
+  weekStart.setDate(weekStart.getDate() - number);
   weekStart = weekStart.toISOString();
   weekStart = weekStart.slice(0, 10);
 
