@@ -3,6 +3,7 @@ import type { applicationStatus } from "../types/applicationStatus";
 import getCurrentWeek from "../utils/getCurrentWeek";
 import getLast30Days from "../utils/getLast30Days";
 import sortHistory from "../utils/sortHistory";
+import getLast7Days from "../utils/getLast7Days";
 
 export default function useGetApplicationsData(applications: application[]) {
   const getCurrentWeekCount = () => {
@@ -23,6 +24,27 @@ export default function useGetApplicationsData(applications: application[]) {
       }
     });
     return currentWeekCount;
+  };
+
+  const getLast7DaysCount = () => {
+    const { weekStart, weekEnd } = getLast7Days();
+
+    let last7DaysCount: Record<applicationStatus | "total", number> = {
+      applied: 0,
+      response: 0,
+      interview: 0,
+      offer: 0,
+      rejected: 0,
+      total: 0,
+    };
+    applications.map((application) => {
+      const currentDate = application[application.current_status];
+      if (currentDate && currentDate >= weekStart && currentDate <= weekEnd) {
+        last7DaysCount[application.current_status]++;
+        last7DaysCount.total++;
+      }
+    });
+    return last7DaysCount;
   };
 
   const getLast30DaysCount = () => {
@@ -50,7 +72,7 @@ export default function useGetApplicationsData(applications: application[]) {
       },
     };
 
-    const sortedApplications = sortHistory(applications, "oldest first")
+    const sortedApplications = sortHistory(applications, "oldest first");
     sortedApplications.map((application) => {
       const date = application[application.current_status];
       const status = application.current_status;
@@ -66,8 +88,8 @@ export default function useGetApplicationsData(applications: application[]) {
       });
     });
 
-    return (last30DaysCount)
+    return last30DaysCount;
   };
 
-  return { getCurrentWeekCount, getLast30DaysCount };
+  return { getCurrentWeekCount, getLast7DaysCount, getLast30DaysCount };
 }
