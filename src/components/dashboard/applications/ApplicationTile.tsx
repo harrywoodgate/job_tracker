@@ -4,6 +4,8 @@ import type { applicationStatus } from "../../../types/applicationStatus";
 import type { application } from "../../../types/application";
 import useApplicationsContext from "../../../hooks/useApplicationsContext";
 import useClickOutside from "../../../hooks/useClickOutside";
+import { useQuery } from "@tanstack/react-query";
+import fetchBrandData from "../../../utils/fetchBrandData";
 
 export default function ApplicationTile({
   application,
@@ -12,6 +14,11 @@ export default function ApplicationTile({
   application: application;
   heading: string;
 }) {
+  const { data } = useQuery({
+    queryKey: ["brand data"],
+    queryFn: () => fetchBrandData("google"),
+  })
+  console.log(data)
   const [optionsDropDownActive, setOptionsDropDownActive] = useState(false);
   const applicationDate = heading.toLocaleLowerCase() as applicationStatus;
   const jobTypeStyling: Record<string, string> = {
