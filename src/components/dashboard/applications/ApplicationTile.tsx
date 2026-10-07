@@ -14,11 +14,11 @@ export default function ApplicationTile({
   application: application;
   heading: string;
 }) {
-  const { data } = useQuery({
-    queryKey: ["brand data"],
-    queryFn: () => fetchBrandData("google"),
-  })
-  console.log(data)
+  const { data: brandData } = useQuery({
+    queryKey: ["brand data", application.company],
+    queryFn: () => fetchBrandData(application.company),
+  });
+  console.log(brandData);
   const [optionsDropDownActive, setOptionsDropDownActive] = useState(false);
   const applicationDate = heading.toLocaleLowerCase() as applicationStatus;
   const jobTypeStyling: Record<string, string> = {
@@ -70,9 +70,11 @@ export default function ApplicationTile({
         <p className="text-gray font-extralight md:max-lg:text-[10px] text-[12px]">
           {heading} {application[applicationDate]}
         </p>
-        <div className="flex justify-center items-center bg-black text-white md:max-lg:h-[20px] md:max-lg:w-[20px] h-[25px] w-[25px] font-semibold rounded-sm md:max-lg:text-[10px] text-xs">
-          C
-        </div>
+        <img
+          src={brandData ? brandData.data.logo.url : ""}
+          alt="company_logo"
+          className={brandData ? "mb-[1px] w-[25px] h-[25px] md:max-lg:w-[20px] md:max-lg:h-[20px]" : "hidden"}
+        />
       </div>
       <div
         className={

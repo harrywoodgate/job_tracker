@@ -27,6 +27,7 @@ export default function ApplicationsColumn({
     "bg-red-500",
   ];
   const count = applications.length;
+  const lowerCaseHeading = heading.toLowerCase() as applicationStatus
 
   return (
     <div
@@ -84,7 +85,7 @@ export default function ApplicationsColumn({
       <div
         className="hidden md:flex justify-center gap-x-1 cursor-pointer text-sm text-gray"
         onClick={() => {
-          formDispatch({ type: "current_status", value: heading.toLowerCase() });
+          formDispatch({ type: "current_status", value: lowerCaseHeading });
           setFormType("new");
           setFormActive(true);
         }}
