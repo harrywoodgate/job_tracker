@@ -70,7 +70,7 @@ export default function ApplicationTile({
           {heading} {application[applicationDate]}
         </p>
         <img
-          src={brandData ? brandData.data.logo.url : ""}
+          src={brandData ? brandData.data.logo.url : null}
           alt="company_logo"
           className={brandData ? "mb-[1px] w-[25px] h-[25px] md:max-lg:w-[20px] md:max-lg:h-[20px]" : "hidden"}
         />

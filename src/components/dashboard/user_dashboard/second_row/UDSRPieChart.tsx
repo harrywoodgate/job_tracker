@@ -40,7 +40,7 @@ export default function UDSRPieChart() {
                 data={data}
                 dataKey="count"
                 nameKey="status"
-                innerRadius={isMobileScreen ? 50 : 80}
+                innerRadius={isMobileScreen ? 50 : 70}
                 shape={(props) => (
                   <Sector {...props} fill={colours[props.index]} />
                 )}
