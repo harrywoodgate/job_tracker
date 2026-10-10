@@ -1,23 +1,32 @@
 import type { outletContext } from "../../../types/outletContext";
 import { useOutletContext } from "react-router";
 
-export default function SettingsInput() {
-
-    const {user, settingsDispatch} = useOutletContext<outletContext>()
+export default function SettingsInput({
+  label,
+  placeholder,
+  dispatchSetting,
+  value,
+}: {
+  label: string;
+  placeholder: string;
+  dispatchSetting: "display_name" | "email";
+  value: string
+}) {
+  const { settingsDispatch } = useOutletContext<outletContext>();
 
   return (
     <div className="flex flex-col">
       <label htmlFor="display_name" className="text-sm font-medium mb-1">
-        Display Name
+        {label}
       </label>
       <input
         type="text"
-        placeholder="Enter display name here"
+        placeholder={placeholder}
         className="bg-white rounded-sm py-1 px-2 w-[30%] text-sm"
-        value={user.display_name}
+        value={value}
         onChange={(e) =>
           settingsDispatch({
-            setting: "display_name",
+            setting: dispatchSetting,
             value: e.target.value,
           })
         }

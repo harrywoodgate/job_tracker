@@ -2,8 +2,10 @@ import saveSettings from "../../../utils/saveSettings";
 import { useOutletContext } from "react-router";
 import type { outletContext } from "../../../types/outletContext";
 import SettingsInput from "./SettingsInput";
+import { useState } from "react";
 
 export default function Settings() {
+  const [showEmailMessage, setShowEmailMessage] = useState(false)
   const { user } = useOutletContext<outletContext>();
 
   return (
@@ -19,10 +21,28 @@ export default function Settings() {
             onSubmit={(e) => {
               e.preventDefault();
               saveSettings(user);
+              user.new_email !== user.current_email ? setShowEmailMessage(true) : "";
             }}
           >
-            <SettingsInput />
-            <button type="submit" className="w-min bg-teal text-white text-sm px-2 py-1 rounded-sm cursor-pointer">Save</button>
+            <SettingsInput
+              label="Display Name"
+              placeholder="Enter display name here"
+              dispatchSetting="display_name"
+              value={user.display_name}
+            />
+            <SettingsInput
+              label="Email"
+              placeholder=""
+              dispatchSetting="email"
+              value={user.new_email}
+            />
+            <p className={showEmailMessage ? "text-sm" : "hidden"}>Check inbox to confirm new email</p>
+            <button
+              type="submit"
+              className="w-min bg-teal text-white text-sm px-2 py-1 rounded-sm cursor-pointer"
+            >
+              Save
+            </button>
           </form>
         </div>
       </div>

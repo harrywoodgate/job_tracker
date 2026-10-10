@@ -6,13 +6,22 @@ import type { settingsDispatchAction } from "../types/settingsDispatchAction";
 export default function useEditSettings() {
   const [user, settingsDispatch] = useReducer(reducer, {
     display_name: "",
+    current_email: "",
+    new_email: ""
   });
 
   useEffect(() => {
     const getUser = async () => {
       const { data, error } = await supabase.auth.getUser();
-      if (data.user) {
-        settingsDispatch({setting: "display_name", value: data.user.user_metadata.display_name})
+      if (data.user?.email) {
+        settingsDispatch({
+          setting: "new user",
+          value: {
+            display_name: data.user.user_metadata.display_name,
+            current_email: data.user.email,
+            new_email: data.user.email,
+          },
+        });
       }
       if (error) {
         console.error(error);
@@ -21,13 +30,21 @@ export default function useEditSettings() {
     getUser();
   }, []);
 
-  function reducer (state: user, action: settingsDispatchAction) {
+  function reducer(state: user, action: settingsDispatchAction) {
     switch (action.setting) {
+      case "new user":
+        return action.value;
       case "display_name": {
         return {
           ...state,
-          display_name: action.value
-        }
+          display_name: action.value,
+        };
+      }
+      case "email": {
+        return {
+          ...state,
+          new_email: action.value,
+        };
       }
     }
   }

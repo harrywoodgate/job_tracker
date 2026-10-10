@@ -3,6 +3,7 @@ import { supabase } from "../supabaseClient";
 
 export default async function saveSettings(user: user) {
   const { error } = await supabase.auth.updateUser({
+    email: user.new_email,
     data: {
       display_name: user.display_name,
     },
