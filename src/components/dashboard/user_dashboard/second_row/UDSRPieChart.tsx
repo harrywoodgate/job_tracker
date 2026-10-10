@@ -3,6 +3,7 @@ import type { outletContext } from "../../../../types/outletContext";
 import useSeperateApplications from "../../../../hooks/useSeperateApplications";
 import { PieChart, Pie, Sector, Tooltip, ResponsiveContainer } from "recharts";
 import PieChartRow from "./PieChartRow";
+import useMediaQuery from "../../../../hooks/useMediaQuery";
 
 export default function UDSRPieChart() {
   const { applicationHistory } = useOutletContext<outletContext>();
@@ -24,20 +25,22 @@ export default function UDSRPieChart() {
     "#ef4444",
   ];
 
+  const isMobileScreen = useMediaQuery("(max-width: 425px)");
+
   return (
     <div className="bg-white rounded-sm shadow-sm p-4 pb-8">
       <h2 className="font-semibold mb-2 text-lg">
         Application Status Breakdown
       </h2>
-      <div className="flex justify-between">
-        <div className="relative">
-          <ResponsiveContainer width={300} height={300}>
+      <div className="flex flex-col sm:flex-row justify-between">
+        <div className="relative sm:w-[50%] sm:h-[300px] h-[200px]">
+          <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
                 data={data}
                 dataKey="count"
                 nameKey="status"
-                innerRadius={80}
+                innerRadius={isMobileScreen ? 50 : 80}
                 shape={(props) => (
                   <Sector {...props} fill={colours[props.index]} />
                 )}
@@ -46,13 +49,13 @@ export default function UDSRPieChart() {
             </PieChart>
           </ResponsiveContainer>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <p className="text-4xl font-semibold">
+            <p className="text-2xl sm:text-4xl font-semibold">
               {applicationHistory.length}
             </p>
             <p className="text-sm">Total</p>
           </div>
         </div>
-        <div className="flex flex-col gap-y-3 w-1/2 pt-10">
+        <div className="flex flex-col gap-y-3 md:w-1/2 pt-2 sm:pt-10 px-2">
           <PieChartRow
             colourIndex={0}
             heading="Applied"
@@ -104,8 +107,8 @@ export default function UDSRPieChart() {
           />
           <div className="grid grid-cols-[3fr_1fr_1fr] w-full mt-2 text-sm">
             <p className="font-semibold">Total</p>
-            <p className="font-semibold">{applicationHistory.length}</p>
-            <p className="text-gray">100%</p>
+            <p className="font-semibold justify-self-center sm:justify-self-start">{applicationHistory.length}</p>
+            <p className="text-gray justify-self-end sm:justify-self-start">100%</p>
           </div>
         </div>
       </div>

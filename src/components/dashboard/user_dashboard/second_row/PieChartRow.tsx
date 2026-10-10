@@ -25,8 +25,8 @@ const colours = [
           <div className={`h-[10px] w-[10px] rounded-full ${colours[colourIndex]}`}></div>
           <p className="text-sm">{heading}</p>
       </div>
-      <p className="font-semibold text-sm">{total}</p>
-      <p className="text-gray text-sm">{percentage}%</p>
+      <p className="font-semibold text-sm justify-self-center sm:justify-self-start">{total}</p>
+      <p className="text-gray text-sm justify-self-end sm:justify-self-start">{percentage}%</p>
     </div>
     <div className="h-[1px] bg-gray-200 rounded-md  w-[90%] flex justify-center"></div>
     </>

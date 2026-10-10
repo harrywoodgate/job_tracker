@@ -18,7 +18,6 @@ export default function ApplicationTile({
     queryKey: ["brand data", application.company],
     queryFn: () => fetchBrandData(application.company),
   });
-  console.log(brandData);
   const [optionsDropDownActive, setOptionsDropDownActive] = useState(false);
   const applicationDate = heading.toLocaleLowerCase() as applicationStatus;
   const jobTypeStyling: Record<string, string> = {

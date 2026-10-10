@@ -5,11 +5,13 @@ import {
   XAxis,
   YAxis,
   Tooltip,
+  LabelList,
 } from "recharts";
 import useGetApplicationsData from "../../../../hooks/useGetApplicationsData";
 import { useOutletContext } from "react-router";
 import type { outletContext } from "../../../../types/outletContext";
 import { useState } from "react";
+import useMediaQuery from "../../../../hooks/useMediaQuery";
 
 export default function UDSRBarChart() {
   const [timePeriod, setTimePeriod] = useState("last 7 days");
@@ -37,6 +39,8 @@ export default function UDSRBarChart() {
     "#16a34a",
     "#ef4444",
   ];
+
+  const isMobileScreen = useMediaQuery("(max-width: 425px)");
 
   return (
     <div className="bg-white rounded-sm shadow-sm p-4">
@@ -87,10 +91,24 @@ export default function UDSRBarChart() {
         </div>
       </div>
       <ResponsiveContainer width="100%" height={280}>
-        <BarChart data={data}>
+        <BarChart
+          data={data}
+          margin={{ top: 15, right: 10, left: 0, bottom: 10 }}
+        >
           <Tooltip cursor={false} />
-          <XAxis dataKey="status" tickLine={false} tickMargin={10} />
-          <YAxis tickLine={false} tickMargin={10} />
+          <XAxis
+            dataKey="status"
+            tickLine={false}
+            tickMargin={10}
+            interval={0}
+            tick={isMobileScreen ? { fontSize: 9 } : { fontSize: 14 }}
+          />
+          <YAxis
+            tickLine={false}
+            tickMargin={10}
+            width={isMobileScreen ? 1 : 40}
+            tick={isMobileScreen ? false : true}
+          />
           <Bar
             dataKey="count"
             barSize={40}
@@ -104,7 +122,9 @@ export default function UDSRBarChart() {
                 rx={5}
               />
             )}
-          />
+          >
+            {isMobileScreen && <LabelList dataKey="count" position="top" fontSize={9}/>}
+          </Bar>
         </BarChart>
       </ResponsiveContainer>
     </div>

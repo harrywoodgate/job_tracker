@@ -10,7 +10,7 @@ export default function UDFirstRowTile({
   heading: string;
   count: number;
   svg: ReactElement;
-  comment: ReactElement
+  comment: ReactElement;
   colourScheme: "blue" | "orange" | "green";
 }) {
   const fontColours = {
@@ -25,16 +25,18 @@ export default function UDFirstRowTile({
   };
 
   return (
-    <div className="bg-white p-4 rounded-sm shadow-sm flex justify-between items-center">
+    <div className="bg-white p-2 md:p-4 rounded-sm shadow-sm flex justify-between items-center">
       <div>
-        <h2 className="text-sm font-semibold mb-1">{heading}</h2>
-        <p className={`${fontColours[colourScheme]} text-2xl font-bold mb-1`}>
+        <h2 className="text-xs md:text-sm font-semibold mb-1">{heading}</h2>
+        <p
+          className={`${fontColours[colourScheme]} md:text-2xl font-bold mb-1`}
+        >
           {count}
         </p>
         {comment}
       </div>
       <div
-        className={`${iconColours[colourScheme]} h-[50px] w-[50px] flex items-center justify-center rounded-full`}
+        className={`${iconColours[colourScheme]} h-[30px] w-[30px] md:h-[50px] md:w-[50px] flex items-center justify-center rounded-full`}
       >
         {svg}
       </div>
