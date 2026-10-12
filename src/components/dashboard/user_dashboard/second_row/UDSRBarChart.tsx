@@ -12,11 +12,13 @@ import { useOutletContext } from "react-router";
 import type { outletContext } from "../../../../types/outletContext";
 import { useState } from "react";
 import useMediaQuery from "../../../../hooks/useMediaQuery";
+import useClickOutside from "../../../../hooks/useClickOutside";
 
 export default function UDSRBarChart() {
   const [timePeriod, setTimePeriod] = useState("last 7 days");
   const [selectorActive, setSelectorActive] = useState(false);
   const { applicationHistory } = useOutletContext<outletContext>();
+  const { dropDownRef } = useClickOutside(setSelectorActive);
   const { getLast7DaysCount, getLast30DaysCount } =
     useGetApplicationsData(applicationHistory);
   const last7DaysCount = getLast7DaysCount();
@@ -46,7 +48,7 @@ export default function UDSRBarChart() {
     <div className="bg-white rounded-sm shadow-sm p-4">
       <div className="flex justify-between items-center mb-6">
         <h2 className="font-semibold text-lg">Applications Trend</h2>
-        <div className="relative">
+        <div className="relative" ref={dropDownRef}>
           <div
             className=" border-gray-200 rounded-sm border-[1px] px-1 pl-2 py-0.5 flex gap-x-1"
             onClick={() => setSelectorActive(!selectorActive)}
@@ -65,7 +67,7 @@ export default function UDSRBarChart() {
           <div
             className={
               selectorActive
-                ? "absolute z-1 text-sm py-0.5 border-gray-200 rounded-sm border-[1px] w-full"
+                ? "absolute z-1 text-sm py-0.5 border-gray-200 bg-white rounded-sm border-[1px] w-full"
                 : "hidden"
             }
           >
@@ -123,7 +125,9 @@ export default function UDSRBarChart() {
               />
             )}
           >
-            {isMobileScreen && <LabelList dataKey="count" position="top" fontSize={9}/>}
+            {isMobileScreen && (
+              <LabelList dataKey="count" position="top" fontSize={9} />
+            )}
           </Bar>
         </BarChart>
       </ResponsiveContainer>

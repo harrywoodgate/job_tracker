@@ -7,7 +7,9 @@ export default function useEditSettings() {
   const [user, settingsDispatch] = useReducer(reducer, {
     display_name: "",
     current_email: "",
-    new_email: ""
+    new_email: "",
+    new_password: "",
+    confirm_password: "",
   });
 
   useEffect(() => {
@@ -20,6 +22,8 @@ export default function useEditSettings() {
             display_name: data.user.user_metadata.display_name,
             current_email: data.user.email,
             new_email: data.user.email,
+            new_password: "",
+            confirm_password: "",
           },
         });
       }
@@ -45,6 +49,25 @@ export default function useEditSettings() {
           ...state,
           new_email: action.value,
         };
+      }
+      case "new_password": {
+        return {
+          ...state,
+          new_password: action.value
+        }
+      }
+      case "confirm_password": {
+        return {
+          ...state,
+          confirm_password: action.value
+        }
+      }
+      case "reset_passwords": {
+        return {
+          ...state,
+          new_password: "",
+          confirm_password: "",
+        }
       }
     }
   }

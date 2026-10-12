@@ -22,7 +22,7 @@ export default function SettingsInput({
       <input
         type="text"
         placeholder={placeholder}
-        className="bg-white rounded-sm py-1 px-2 w-[30%] text-sm"
+        className="bg-white rounded-sm py-1 px-2 text-sm"
         value={value}
         onChange={(e) =>
           settingsDispatch({
