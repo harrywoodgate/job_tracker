@@ -10,7 +10,7 @@ export default function PasswordReset({
 
   return (
     <div className={passwordVerified ? "flex flex-col gap-y-2 mt-2" : "hidden"}>
-      <label htmlFor="new_password" className="text-sm">
+      <label htmlFor="new_password" className="text-xs sm:text-sm">
         New Password
       </label>
       <div className="relative">

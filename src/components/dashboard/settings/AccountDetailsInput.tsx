@@ -19,7 +19,7 @@ export default function AccountDetailsInput({
 
   return (
     <div className="flex flex-col">
-      <label htmlFor="display_name" className="text-sm mb-1">
+      <label htmlFor="display_name" className="text-xs sm:text-sm mb-1">
         {label}
       </label>
       <div className="relative">

@@ -20,9 +20,9 @@ export default function AccountDetails() {
   const svgStyling = "w-[15px] absolute right-3 fill-gray top-1/4";
 
   return (
-    <div className="bg-white w-[60%] rounded-md shadow-sm p-4">
-      <h3 className="font-bold text-lg">Account Details</h3>
-      <p className="text-sm text-gray mb-4">
+    <div className="bg-white w-full sm:w-[60%] rounded-md shadow-sm p-4">
+      <h3 className="font-bold sm:text-lg">Account Details</h3>
+      <p className="text-xs sm:text-sm text-gray mb-4">
         These are the details used for your job tracker account
       </p>
       <form
@@ -81,7 +81,7 @@ export default function AccountDetails() {
         </p>
         {!passwordVerified && (
           <>
-            <label htmlFor="current_password" className="text-sm">
+            <label htmlFor="current_password" className="text-xs sm:text-sm">
               Current Password
             </label>
             <div className="relative">
