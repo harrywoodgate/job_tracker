@@ -1,4 +1,5 @@
 import AccountDetails from "./AccountDetails";
+import DataMessage from "./DataMessage";
 
 export default function Settings() {
   return (
@@ -8,8 +9,9 @@ export default function Settings() {
         <p className="text-gray text-xs md:text-sm mt-1">
           Manage your account details and preferences
         </p>
-        <div className="flex w-full mt-4">
+        <div className="flex w-full gap-x-4 mt-4">
           <AccountDetails />
+          <DataMessage />
         </div>
       </div>
     </div>
