@@ -3,9 +3,7 @@ import { supabase } from "../supabaseClient";
 
 export default function useVerifyPassword() {
   const [passwordVerified, setPasswordVerified] = useState(false);
-  const [verificationError, setVerificationError] = useState(
-    "",
-  );
+  const [verificationError, setVerificationError] = useState("");
 
   const verifyPassword = async (email: string, currentPassword: string) => {
     const { error } = await supabase.auth.signInWithPassword({
@@ -13,8 +11,18 @@ export default function useVerifyPassword() {
       password: currentPassword,
     });
 
-    error ? setVerificationError("Current password is incorrect") : setPasswordVerified(true);
+    if (error) {
+      setVerificationError("Current password is incorrect");
+    } else {
+      setPasswordVerified(true);
+      setVerificationError("");
+    }
   };
 
-  return {passwordVerified, setPasswordVerified, verificationError, verifyPassword}
+  return {
+    passwordVerified,
+    setPasswordVerified,
+    verificationError,
+    verifyPassword,
+  };
 }
