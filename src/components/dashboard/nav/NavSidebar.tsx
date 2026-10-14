@@ -27,7 +27,7 @@ export default function NavSidebar({
         className={
           mobileNavActive
             ? "flex flex-col absolute left-0 top-0 h-[100svh] w-[240px] animate-nav-slide-in z-1 bg-primary-blue px-2 py-8"
-            : "hidden lg:flex flex-col gap-y-1"
+            : "hidden lg:flex h-full flex-col justify-between gap-y-1"
         }
       >
         <div>
