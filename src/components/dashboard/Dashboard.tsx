@@ -2,6 +2,7 @@ import Nav from "./nav/Nav.tsx";
 import { Outlet } from "react-router";
 import useManageApplications from "../../hooks/useManageApplications.ts";
 import useEditSettings from "../../hooks/useEditSettings.ts";
+import { NavContext } from "../../contexts/navContext.ts";
 
 export default function Dashboard() {
   const {
@@ -14,7 +15,9 @@ export default function Dashboard() {
 
   return (
     <div className="sm:grid grid-cols-[auto_1fr] bg-gray-100">
-      <Nav />
+      <NavContext value={{user}}>
+      <Nav/>
+      </NavContext>
       <Outlet
         context={{
           applicationHistory,
