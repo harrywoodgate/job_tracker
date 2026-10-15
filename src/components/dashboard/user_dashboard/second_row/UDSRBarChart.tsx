@@ -95,7 +95,11 @@ export default function UDSRBarChart() {
       <ResponsiveContainer width="100%" height={280}>
         <BarChart
           data={data}
-          margin={{ top: 15, right: 10, left: 0, bottom: 10 }}
+          margin={
+            isMobileScreen
+              ? { top: 15, right: 10, left: 0, bottom: 10 }
+              : { top: 15, right: 10, left: 10, bottom: 10 }
+          }
         >
           <Tooltip cursor={false} />
           <XAxis
