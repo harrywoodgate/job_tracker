@@ -4,4 +4,5 @@ export type user = {
     new_email: string,
     new_password: string,
     confirm_password: string,
+    created_at: string,
 }

@@ -10,6 +10,7 @@ export default function useEditSettings() {
     new_email: "",
     new_password: "",
     confirm_password: "",
+    created_at: "",
   });
 
   useEffect(() => {
@@ -24,6 +25,7 @@ export default function useEditSettings() {
             new_email: data.user.email,
             new_password: "",
             confirm_password: "",
+            created_at: data.user.created_at
           },
         });
       }

@@ -1,13 +1,8 @@
 import { createContext } from "react";
+import type { user } from "../types/user";
 
 export type navContext = {
-    user: {
-    display_name: string;
-    current_email: string;
-    new_email: string;
-    new_password: string;
-    confirm_password: string;
-}
+    user: user
 }
 
 export const NavContext = createContext<navContext | null>(null)

@@ -3,6 +3,7 @@ import { supabase } from "../../../supabaseClient";
 
 export default function NavProfileExpanded({ active }: { active: boolean }) {
   const { user } = useNavContext();
+  const createdAt = user.created_at.slice(0, 10);
 
   async function signOut() {
     const { error } = await supabase.auth.signOut();
@@ -20,7 +21,7 @@ export default function NavProfileExpanded({ active }: { active: boolean }) {
       }
     >
       <h3 className="font-semibold">{user.display_name}</h3>
-      <p className="text-xs text-gray italic mb-2">Joined 20/10/2026</p>
+      <p className="text-xs text-gray italic mb-2">Joined {createdAt}</p>
       <button className="bg-teal rounded-md text-white font-semibold flex justify-center gap-x-1 py-1 cursor-pointer"
       onClick={signOut}>
         <svg
