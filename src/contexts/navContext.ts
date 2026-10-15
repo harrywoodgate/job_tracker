@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-type navContext = {
+export type navContext = {
     user: {
     display_name: string;
     current_email: string;

@@ -1,26 +1,30 @@
-import { use } from "react";
-import { NavContext } from "../../../contexts/navContext";
+import useNavContext from "../../../hooks/useNavContext";
+import NavProfileExpanded from "./NavProfileExpanded";
+import { useState } from "react";
+import useClickOutside from "../../../hooks/useClickOutside";
 
 export default function NavProfile() {
-  const context = use(NavContext);
-  let firstLetters: string[] | string = [];
-  context && context.user.display_name
-    ? (firstLetters = context.user.display_name.split(" "))
-    : (firstLetters = ["U"]);
+  const [navProfileExpanded, setNavProfileExpanded] = useState(false);
+  const { user } = useNavContext();
+  const displayName = user.display_name ? user.display_name : "User";
+  let firstLetters: string | string[] = [];
+  firstLetters = displayName.split(" ");
   firstLetters = firstLetters.map((word) => word.slice(0, 1));
   firstLetters = firstLetters.join("").toUpperCase();
+  const { dropDownRef } = useClickOutside(setNavProfileExpanded);
 
   return (
-    <div className="border-1 flex justify-between items-center rounded-lg border-[#1f385f] p-2 mx-2">
+    <div className="border-1 flex relative justify-between items-center rounded-lg border-[#1f385f] p-2 mx-2">
       <div className="flex items-center gap-x-2">
         <div className="flex justify-center items-center bg-secondary-blue w-[35px] h-[35px] rounded-full">
           <p className="text-xs font-semibold">{firstLetters}</p>
         </div>
-        <p className="text-xs">
-          {context?.user.display_name ? context.user.display_name : "User"}
-        </p>
+        <p className="text-xs">{displayName}</p>
       </div>
-      <div>
+      <div ref={dropDownRef}>
+        <NavProfileExpanded active={navProfileExpanded} />
+      </div>
+      <div onClick={() => setNavProfileExpanded(!navProfileExpanded)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
