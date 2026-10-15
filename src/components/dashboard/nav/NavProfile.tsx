@@ -4,10 +4,12 @@ import { NavContext } from "../../../contexts/navContext";
 export default function NavProfile() {
   const context = use(NavContext);
   let firstLetters: string[] | string = [];
-  context ? firstLetters = context.user.display_name.split(" "): "";
-  firstLetters = firstLetters.map(word => word.slice(0, 1));
+  context && context.user.display_name
+    ? (firstLetters = context.user.display_name.split(" "))
+    : (firstLetters = ["U"]);
+  firstLetters = firstLetters.map((word) => word.slice(0, 1));
   firstLetters = firstLetters.join("").toUpperCase();
-  
+
   return (
     <div className="border-1 flex justify-between items-center rounded-lg border-[#1f385f] p-2 mx-2">
       <div className="flex items-center gap-x-2">
