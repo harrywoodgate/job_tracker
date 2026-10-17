@@ -1,6 +1,7 @@
 import UDHeader from "./UDHeader"
 import UDFirstRow from "./first_row/UDFirstRow"
 import UDSecondRow from "./second_row/UDSecondRow"
+import UDThirdRow from "./third_row/UDThirdRow"
 
 export default function UserDashboard () {
     return (
@@ -9,6 +10,7 @@ export default function UserDashboard () {
             <UDHeader />
             <UDFirstRow />
             <UDSecondRow />
+            <UDThirdRow />
             </div>
         </div>
     )
