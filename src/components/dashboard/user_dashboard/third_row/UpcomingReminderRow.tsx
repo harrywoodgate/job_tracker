@@ -47,7 +47,7 @@ export default function UpcomingReminderRow({
   };
 
   return (
-    <div className="flex justify-between items-center rounded-md p-2 border-[1px] border-gray-100">
+    <div className="flex justify-between items-center rounded-md p-2 border-[1px] border-gray-200">
       <div className="flex items-center gap-x-2">
         <div
           className={`w-[28px] h-[28px] ${colours[applicationStatus]} flex items-center justify-center rounded-md`}
