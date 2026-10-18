@@ -11,7 +11,7 @@ export default function UDTRRecentActivity() {
   return (
     <div className="bg-white rounded-sm shadow-sm p-4">
       <h2 className="font-semibold mb-4">Recent Activity</h2>
-      <div className="flex flex-col h-[196px] justify-center gap-y-1">
+      <div className="flex flex-col sm:h-[196px] justify-center gap-y-1">
         {recentActivity.length === 0 && (
           <p className="text-sm text-center text-gray">No recent activity <br /> Go to applications to add more!</p>
         )}
