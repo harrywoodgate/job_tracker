@@ -79,7 +79,7 @@ export default function RecentActivityRow({
     >
       <div className="flex items-center gap-x-2">
         <div
-          className={`${secondaryColour[application.current_status]} rounded-full h-[25px] w-[25px] flex items-center justify-center`}
+          className={`${secondaryColour[application.current_status]} rounded-md p-1 flex items-center justify-center`}
         >
           {svg[application.current_status]}
         </div>
