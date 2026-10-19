@@ -23,15 +23,20 @@ export default function NavProfile() {
       </div>
       <div ref={dropDownRef}>
         <NavProfileExpanded active={navProfileExpanded} />
-      </div>
-      <div onClick={() => setNavProfileExpanded(!navProfileExpanded)}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          className="w-[20px] fill-white cursor-pointer"
+
+        <div
+          onClick={() =>
+            setNavProfileExpanded(!navProfileExpanded)
+          }
         >
-          <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
-        </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            className="w-[20px] fill-white cursor-pointer"
+          >
+            <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+          </svg>
+        </div>
       </div>
     </div>
   );
