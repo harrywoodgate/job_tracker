@@ -1,10 +1,10 @@
 export default function HomepageFooter() {
   return (
-    <div className="bg-white p-4 flex flex-col items-center">
-      <h2 className="text-lg font-semibold">
+    <div className="bg-white p-4 hidden sm:flex flex-col items-center">
+      <h2 className="text-lg text-sm text-center font-semibold">
         Everything you need to take control of your job search
       </h2>
-      <div className="flex mt-4 gap-x-6 pb-4">
+      <div className="flex sm:max-lg:grid grid-cols-2 mt-4 gap-x-6 gap-y-4 pb-4">
         <div className="flex items-center gap-x-4">
           <div className="bg-sky-100 w-fit h-fit p-2 flex items-center rounded-lg">
             <svg
@@ -23,7 +23,7 @@ export default function HomepageFooter() {
             </p>
           </div>
         </div>
-        <div className="w-[2px] self-stretch bg-gray-100"></div>
+        <div className="w-[2px] self-stretch hidden lg:block bg-gray-100"></div>
         <div className="flex items-center gap-x-4">
           <div className="bg-emerald-100 w-fit h-fit p-2 flex items-center rounded-lg">
             <svg
@@ -42,7 +42,7 @@ export default function HomepageFooter() {
             </p>
           </div>
         </div>
-        <div className="w-[2px] self-stretch bg-gray-100"></div>
+        <div className="w-[2px] self-stretch hidden lg:block bg-gray-100"></div>
         <div className="flex items-center gap-x-4">
           <div className="bg-orange-100 w-fit h-fit p-2 flex items-center rounded-lg">
             <svg
@@ -61,7 +61,7 @@ export default function HomepageFooter() {
             </p>
           </div>
         </div>
-        <div className="w-[2px] self-stretch bg-gray-100"></div>
+        <div className="w-[2px] self-stretch hidden lg:block bg-gray-100"></div>
         <div className="flex items-center gap-x-4">
           <div className="bg-indigo-100 w-fit h-fit p-2 flex items-center rounded-lg">
             <svg
