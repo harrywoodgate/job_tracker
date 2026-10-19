@@ -1,6 +1,7 @@
 import { useReducer } from "react";
 import type { formDispatchAction } from "../types/formDispatchAction";
 import type { application } from "../types/application";
+import type { applicationStatus } from "../types/applicationStatus";
 
 export default function useManageFormInfo() {
   const [formApplication, formDispatch] = useReducer(reducer, {
@@ -52,7 +53,7 @@ export default function useManageFormInfo() {
       case "resetForm":
         return {
           id: "",
-          current_status: "applied",
+          current_status: "applied" as applicationStatus,
           job_title: "",
           company: "",
           job_type: "",
