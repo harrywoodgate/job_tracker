@@ -1,48 +1,23 @@
-import { useState } from "react";
-import { useNavigate } from "react-router";
-import { supabase } from "../../supabaseClient";
-import { Link } from "react-router";
+import LoginCard from "./LoginCard";
+import logo from "../../img/logo.png";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
-
-  async function handleLogin(e: React.SubmitEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-    if (error) return setError(error.message);
-    navigate("/dashboard/userDashboard");
-  }
-
   return (
-    <div className="w-screen h-screen flex items-center justify-center flex-col gap-y-2">
-      <h1 className="text-xl">Login</h1>
-      <form onSubmit={handleLogin} className="flex flex-col gap-y-2">
-        <input
-          type="text"
-          className="border-2 border-black"
-          placeholder="email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          className="border-2 border-black"
-          placeholder="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit" className="cursor-pointer">
-          Login
-        </button>
-      </form>
-      {error && <p>{error}</p>}
-      <p>
-        Dont have an account? Sign up <Link to="/signup" className="text-blue-600 cursor-pointer">here</Link>
-      </p>
+    <div className="w-screen h-screen flex flex-col p-6 bg-primary-blue text-white">
+      <div className="flex gap-x-2 items-center">
+        <img src={logo} alt="logo" className="w-[35px] h-[35px]" />
+        <h1 className="text-3xl font-semibold">Job Tracker</h1>
+      </div>
+      <div className="flex justify-between h-full">
+        <div className="flex flex-col justify-center">
+          <h2 className="text-4xl font-semibold">Welcome back!</h2>
+          <p className="text-sm">
+            Sign in to continue tracking your job applications <br /> and career
+            progress
+          </p>
+        </div>
+        <LoginCard />
+      </div>
     </div>
   );
 }
