@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import screenshot from "../../img/dashboard_screenshot.png";
 
 export default function HomepageBody() {
   return (
@@ -69,6 +70,11 @@ export default function HomepageBody() {
           </div>
         </div>
       </div>
+      <img
+        src={screenshot}
+        alt="dashboard_screenshot"
+        className="h-full rounded-md shadow-lg"
+      />
     </div>
   );
 }
