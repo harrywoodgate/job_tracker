@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { supabase } from "../../supabaseClient";
 import { Link } from "react-router";
+import googleLogo from "../../img/google_logo.png"
 
 export default function LoginCard() {
   const [email, setEmail] = useState("");
@@ -94,7 +95,7 @@ export default function LoginCard() {
           </button>
         </form>
         <p className="text-sm text-gray">or</p>
-        <button onClick={loginWithGoogle}>Login with google</button>
+        <button onClick={loginWithGoogle} className="w-full flex items-center justify-center gap-x-3 border-1 border-black rounded-md p-2 cursor-pointer"> <img src={googleLogo} alt="" className="w-[20px] h-[20px]"/> Sign in with Google</button>
         <p className="text-xs text-gray text-center mt-4">
           By signing in you agree to our{" "}
           <span className="text-teal font-medium">Terms of Service</span>
