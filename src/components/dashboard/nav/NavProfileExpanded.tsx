@@ -22,7 +22,7 @@ export default function NavProfileExpanded({ active }: { active: boolean }) {
     >
       <div className="flex items-center justify-between mb-2">
         <div>
-          <h3 className="font-semibold">{user.display_name}</h3>
+          <h3 className="font-semibold">{user.display_name ? user.display_name : "User"}</h3>
           <p className="text-xs text-gray italic">Joined {createdAt}</p>
         </div>
       </div>
