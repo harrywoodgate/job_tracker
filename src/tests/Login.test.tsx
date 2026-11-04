@@ -5,6 +5,7 @@ import routes from "../routes";
 import userEvent from "@testing-library/user-event";
 import { supabase } from "../supabaseClient";
 import mockHooks from "./mockHooks";
+import useMediaQuery from "../hooks/useMediaQuery";
 
 vi.mock("../supabaseClient", () => ({
   supabase: {
@@ -36,6 +37,7 @@ function setup() {
     initialEntries: ["/login"],
   });
   render(<RouterProvider router={router} />);
+  vi.mocked(useMediaQuery).mockReturnValue(true);
 
   mockHooks();
 

@@ -3,7 +3,6 @@ import { vi } from "vitest";
 import type { User, Session } from "@supabase/supabase-js";
 import useEditSettings from "../hooks/useEditSettings";
 import useManageApplications from "../hooks/useManageApplications";
-import useMediaQuery from "../hooks/useMediaQuery";
 
 const mockUser = {
   id: "123",
@@ -73,6 +72,4 @@ export default function mockHooks() {
     updateApplication: vi.fn(),
     deleteApplication: vi.fn(),
   });
-
-  vi.mocked(useMediaQuery).mockReturnValue(true);
 }

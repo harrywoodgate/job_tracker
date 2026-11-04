@@ -4,6 +4,7 @@ import { createMemoryRouter, RouterProvider } from "react-router";
 import routes from "../routes";
 import mockHooks from "./mockHooks";
 import useEditSettings from "../hooks/useEditSettings";
+import useMediaQuery from "../hooks/useMediaQuery";
 
 vi.mock("../supabaseClient", () => ({
   supabase: {
@@ -31,6 +32,7 @@ vi.mock("../hooks/useMediaQuery", () => ({
 
 function setup() {
   mockHooks();
+  vi.mocked(useMediaQuery).mockReturnValue(true);
 
   const router = createMemoryRouter(routes, {
     initialEntries: ["/dashboard/userDashboard"],
