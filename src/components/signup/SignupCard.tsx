@@ -21,7 +21,7 @@ export default function SignupCard() {
       password,
     });
     if (error) return setError(error.message);
-    navigate("/dashboard");
+    navigate("/dashboard/userDashboard");
   }
 
   return (

@@ -28,6 +28,14 @@ export default function mockHooks() {
     error: null,
   });
 
+    vi.mocked(supabase.auth.signUp).mockResolvedValue({
+    data: {
+      user: mockUser,
+      session: mockSession,
+    },
+    error: null,
+  });
+
   vi.mocked(supabase.auth.getSession).mockResolvedValue({
     data: { session: mockSession },
     error: null,
