@@ -14,11 +14,12 @@ export default function ApplicationForm({
   setActive: React.Dispatch<React.SetStateAction<boolean>>;
   application: application;
   dispatch: React.ActionDispatch<[action: formDispatchAction]>;
-  formType: string
+  formType: string;
 }) {
-  const { addApplication, updateApplication } = useOutletContext<outletContext>();
-  const status = application.current_status
-// maybe shorten the form for drag and drop also exit button just edits form with new status and no date
+  const { addApplication, updateApplication } =
+    useOutletContext<outletContext>();
+  const status = application.current_status;
+  // maybe shorten the form for drag and drop also exit button just edits form with new status and no date
   return (
     <div
       className={
@@ -31,15 +32,17 @@ export default function ApplicationForm({
         <form
           className="flex flex-col gap-y-4"
           onSubmit={(e) => {
-            e.preventDefault()
-            formType === "new" ? addApplication(e, {
-              id: crypto.randomUUID(),
-              job_title: application.job_title,
-              company: application.company,
-              current_status: application.current_status,
-              job_type: application.job_type,
-              [application.current_status]: application[status],
-            }) : updateApplication(application);
+            e.preventDefault();
+            formType === "new"
+              ? addApplication(e, {
+                  id: crypto.randomUUID(),
+                  job_title: application.job_title,
+                  company: application.company,
+                  current_status: application.current_status,
+                  job_type: application.job_type,
+                  [application.current_status]: application[status],
+                })
+              : updateApplication(application);
             dispatch({ type: "resetForm" });
             setActive(false);
           }}
@@ -108,104 +111,122 @@ export default function ApplicationForm({
               Job Type
             </label>
             <div className="flex gap-x-1 mt-2">
-              <div
+              <button
                 className={
                   application.job_type === "remote"
                     ? "p-1 rounded-md cursor-pointer text-white font-semibold bg-teal border-1 border-teal text-xs py-2 px-4"
                     : "p-1 rounded-md cursor-pointer text-gray font-semibold border-1 border-gray-200 text-xs py-2 px-4"
                 }
-                onClick={() => {
+                onClick={(e) => {
+                  e.preventDefault();
                   application.job_type === "remote"
                     ? dispatch({ type: "job_type", value: "" })
                     : dispatch({ type: "job_type", value: "remote" });
                 }}
               >
                 Remote
-              </div>
-              <div
+              </button>
+              <button
                 className={
                   application.job_type === "hybrid"
                     ? "p-1 rounded-md cursor-pointer text-white font-semibold bg-teal border-1 border-teal text-xs py-2 px-4"
                     : "p-1 rounded-md cursor-pointer text-gray font-semibold border-1 border-gray-200 text-xs py-2 px-4"
                 }
-                onClick={() => {
+                onClick={(e) => {
+                  e.preventDefault();
                   application.job_type === "hybrid"
                     ? dispatch({ type: "job_type", value: "" })
                     : dispatch({ type: "job_type", value: "hybrid" });
                 }}
               >
                 Hybrid
-              </div>
-              <div
+              </button>
+              <button
                 className={
                   application.job_type === "onsite"
                     ? "p-1 rounded-md cursor-pointer text-white font-semibold bg-teal border-1 border-teal text-xs py-2 px-4"
                     : "p-1 rounded-md cursor-pointer text-gray font-semibold border-1 border-gray-200 text-xs py-2 px-4"
                 }
-                onClick={() => {
+                onClick={(e) => {
+                  e.preventDefault();
                   application.job_type === "onsite"
                     ? dispatch({ type: "job_type", value: "" })
                     : dispatch({ type: "job_type", value: "onsite" });
                 }}
               >
                 Onsite
-              </div>
+              </button>
             </div>
           </div>
           <div className="flex flex-col gap-y-2">
             <label className="text-sm font-semibold">Current status</label>
             <div className="flex gap-x-1">
               {/* // could maybe break these up into smaller components but not sure if its better tbh */}
-              <div
+              <button
                 className={
                   application.current_status === "applied"
                     ? "p-1 rounded-md cursor-pointer text-white bg-blue-700 font-semibold px-4 py-2 text-xs"
                     : "p-1 rounded-md cursor-pointer text-blue-600 bg-blue-100 font-semibold px-4 py-2 text-xs"
                 }
-                onClick={() => dispatch({ type: "current_status", value: "applied" })}
+                onClick={(e) => {
+                  e.preventDefault()
+                  dispatch({ type: "current_status", value: "applied" })
+                }}
               >
                 Applied
-              </div>
-              <div
+              </button>
+              <button
                 className={
                   application.current_status === "response"
                     ? "p-1 rounded-md cursor-pointer text-white bg-teal-700 font-semibold px-4 py-2 text-xs"
                     : "p-1 rounded-md cursor-pointer text-teal-600 bg-teal-100 font-semibold px-4 py-2 text-xs"
                 }
-                onClick={() => dispatch({ type: "current_status", value: "response" })}
+                onClick={(e) => {
+                  e.preventDefault()
+                  dispatch({ type: "current_status", value: "response" })
+                }}
               >
                 Response
-              </div>
-              <div
+              </button>
+              <button
                 className={
                   application.current_status === "interview"
                     ? "p-1 rounded-md cursor-pointer text-white bg-yellow-600 font-semibold px-4 py-2 text-xs"
                     : "p-1 rounded-md cursor-pointer text-yellow-600 bg-yellow-100 font-semibold px-4 py-2 text-xs"
                 }
-                onClick={() => dispatch({ type: "current_status", value: "interview" })}
+                onClick={(e) => {
+                  e.preventDefault()
+                  dispatch({ type: "current_status", value: "interview" })
+                }}
               >
                 Interview
-              </div>
-              <div
+              </button>
+              <button
                 className={
                   application.current_status === "offer"
                     ? "p-1 rounded-md cursor-pointer text-white bg-green-600 font-semibold px-4 py-2 text-xs"
                     : "p-1 rounded-md cursor-pointer text-green-600 bg-green-100 font-semibold px-4 py-2 text-xs"
                 }
-                onClick={() => dispatch({ type: "current_status", value: "offer" })}
+                onClick={(e) => {
+                  e.preventDefault()
+                  dispatch({ type: "current_status", value: "offer" })
+                }}
               >
                 Offer
-              </div>
-              <div
+              </button>
+              <button
                 className={
                   application.current_status === "rejected"
                     ? "p-1 rounded-md cursor-pointer text-white bg-red-600 font-semibold px-4 py-2 text-xs"
                     : "p-1 rounded-md cursor-pointer text-red-600 bg-red-100 font-semibold px-4 py-2 text-xs"
                 }
-                onClick={() => dispatch({ type: "current_status", value: "rejected" })}
+                onClick={(e) => {
+                  e.preventDefault()
+                  dispatch({ type: "current_status", value: "rejected" })
+                }}
               >
                 Rejected
-              </div>
+              </button>
             </div>
           </div>
           <label
@@ -219,7 +240,11 @@ export default function ApplicationForm({
               className="border-1 border-gray-200 p-2 font-normal text-xs rounded-md"
               value={application[status]}
               onChange={(e) =>
-                dispatch({ type: "date", status:application.current_status, value: e.target.value })
+                dispatch({
+                  type: "date",
+                  status: application.current_status,
+                  value: e.target.value,
+                })
               }
               required
             />

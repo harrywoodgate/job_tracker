@@ -38,6 +38,7 @@ export default function ApplicationTile({
 
   return (
     <div
+      data-testid="application"
       className="bg-white rounded-md p-2 text-sm flex flex-col gap-y-1 shadow-sm"
       draggable
       onDragStart={() => setDraggedTile(application)}
@@ -70,9 +71,17 @@ export default function ApplicationTile({
           {heading} {application[applicationDate]}
         </p>
         <img
-          src={brandData ? brandData.data.logo.url : null}
+          src={
+            brandData && brandData.data.logo.url
+              ? brandData.data.logo.url
+              : null
+          }
           alt="company_logo"
-          className={brandData ? "mb-[1px] w-[25px] h-[25px] md:max-lg:w-[20px] md:max-lg:h-[20px]" : "hidden"}
+          className={
+            brandData
+              ? "mb-[1px] w-[25px] h-[25px] md:max-lg:w-[20px] md:max-lg:h-[20px]"
+              : "hidden"
+          }
         />
       </div>
       <div

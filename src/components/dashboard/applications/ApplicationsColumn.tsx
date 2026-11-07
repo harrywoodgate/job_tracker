@@ -82,7 +82,7 @@ export default function ApplicationsColumn({
             />
           ))}
       </div>
-      <div
+      <button
         className="hidden md:flex justify-center gap-x-1 cursor-pointer text-sm text-gray"
         onClick={() => {
           formDispatch({ type: "current_status", value: lowerCaseHeading });
@@ -98,7 +98,7 @@ export default function ApplicationsColumn({
           <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
         </svg>
         <span>Add</span>
-      </div>
+      </button>
     </div>
   );
 }
