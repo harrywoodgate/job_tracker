@@ -34,10 +34,10 @@ export default function LoginCard() {
   }
 
   return (
-    <div className="flex items-center w-[40%]">
-      <div className="bg-white px-8 py-10 text-black rounded-lg flex flex-col items-center gap-y-2 w-full">
-        <h1 className="text-2xl font-semibold">Sign in to your account</h1>
-        <p className="text-sm">
+    <div className="flex items-center w-full mt-6 md:mt-0 md:w-[45%] lg:w-[40%]">
+      <div className="bg-white lg:px-8 px-6 lg:py-10 py-6 text-black rounded-lg flex flex-col items-center gap-y-2 w-full">
+        <h1 className="lg:text-2xl text-lg font-semibold">Sign in to your account</h1>
+        <p className="lg:text-sm text-xs">
           Dont have an account?
           <Link to="/signup" className="text-teal ml-1 cursor-pointer">
             Sign up
@@ -45,7 +45,7 @@ export default function LoginCard() {
         </p>
         <form onSubmit={handleLogin} className="flex flex-col gap-y-2 w-full">
           <div className="flex flex-col">
-            <label htmlFor="email" className="text-sm mb-1">
+            <label htmlFor="email" className="lg:text-sm text-xs mb-1">
               Email address
             </label>
             <div className="relative">
@@ -58,7 +58,7 @@ export default function LoginCard() {
               </svg>
               <input
                 type="text"
-                className="border-2 border-gray-200 rounded-md py-2 px-2 pl-10 w-full text-sm"
+                className="border-2 border-gray-200 rounded-md py-2 px-2 pl-10 w-full lg:text-sm text-xs"
                 placeholder="you@example.com"
                 id="email"
                 onChange={(e) => setEmail(e.target.value)}
@@ -66,7 +66,7 @@ export default function LoginCard() {
             </div>
           </div>
           <div className="flex flex-col">
-            <label htmlFor="email" className="text-sm mb-1">
+            <label htmlFor="email" className="lg:text-sm text-xs mb-1">
               Password
             </label>
             <div className="relative">
@@ -79,7 +79,7 @@ export default function LoginCard() {
               </svg>
               <input
                 type="password"
-                className="border-2 border-gray-200 rounded-md py-2 px-2 pl-10 w-full text-sm"
+                className="border-2 border-gray-200 rounded-md py-2 px-2 pl-10 w-full lg:text-sm text-xs"
                 placeholder="Enter your password"
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -89,13 +89,13 @@ export default function LoginCard() {
           <div className="w-full h-[2px] bg-gray-200 my-4"></div>
           <button
             type="submit"
-            className="cursor-pointer bg-teal text-white rounded-md py-2"
+            className="cursor-pointer bg-teal text-sm lg:text-md text-white rounded-md py-2"
           >
             Login
           </button>
         </form>
         <p className="text-sm text-gray">or</p>
-        <button onClick={loginWithGoogle} className="w-full flex items-center justify-center gap-x-3 border-1 border-black rounded-md p-2 cursor-pointer"> <img src={googleLogo} alt="" className="w-[20px] h-[20px]"/> Sign in with Google</button>
+        <button onClick={loginWithGoogle} className="w-full text-sm lg:text-md flex items-center justify-center gap-x-3 border-1 border-black rounded-md p-2 cursor-pointer"> <img src={googleLogo} alt="" className="w-[20px] h-[20px]"/> Sign in with Google</button>
         <p className="text-xs text-gray text-center mt-4">
           By signing in you agree to our{" "}
           <span className="text-teal font-medium">Terms of Service</span>
