@@ -7,10 +7,11 @@ export default function UDTRUpcomingReminders() {
   const { applicationHistory } = useOutletContext<outletContext>();
 
   let remindersApplications = getRemindersData(applicationHistory);
+  const styling = "sm:flex flex-col max-h-[196px] sm:h-[196px] gap-y-1 overflow-auto mt-4"
   return (
     <div className="bg-white rounded-sm shadow-sm p-4">
       <h2 className="font-semibold">Upcoming Reminders</h2>
-      <div className="sm:flex flex-col max-h-[196px] sm:h-[196px] gap-y-1 overflow-auto mt-4 justify-start">
+      <div className={remindersApplications.length ===0 ? `${styling} justify-center` : `${styling} justify-start`}>
         {remindersApplications.length === 0 && (
           <p className="text-sm text-center text-gray">
             No upcoming reminders
