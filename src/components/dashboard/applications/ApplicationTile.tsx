@@ -18,6 +18,7 @@ export default function ApplicationTile({
     queryKey: ["brand data", application.company],
     queryFn: () => fetchBrandData(application.company),
   });
+  console.log(brandData);
   const [optionsDropDownActive, setOptionsDropDownActive] = useState(false);
   const applicationDate = heading.toLocaleLowerCase() as applicationStatus;
   const jobTypeStyling: Record<string, string> = {
@@ -70,19 +71,13 @@ export default function ApplicationTile({
         <p className="text-gray font-extralight md:max-lg:text-[10px] text-[12px]">
           {heading} {application[applicationDate]}
         </p>
-        <img
-          src={
-            brandData && brandData.data.logo.url
-              ? brandData.data.logo.url
-              : null
-          }
-          alt="company_logo"
-          className={
-            brandData
-              ? "mb-[1px] w-[25px] h-[25px] md:max-lg:w-[20px] md:max-lg:h-[20px]"
-              : "hidden"
-          }
-        />
+        {brandData && brandData.data.logo && (
+          <img
+            src={brandData.data.logo.url}
+            alt="company_logo"
+            className="mb-[1px] w-[25px] h-[25px] md:max-lg:w-[20px] md:max-lg:h-[20px]"
+          />
+        )}
       </div>
       <div
         className={
