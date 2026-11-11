@@ -31,7 +31,7 @@ export default function HomepageBody() {
         >
           Get started for free
         </Link>
-        <div className="sm:text-xs text-[10px] mt-2 text-gray flex gap-x-4">
+        <div className="sm:text-xs text-[10px] mt-2 text-gray flex gap-x-4 row-start-2 col-end-3">
           <div className="flex items-center gap-x-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +73,7 @@ export default function HomepageBody() {
       <img
         src={screenshot}
         alt="dashboard_screenshot"
-        className="h-full rounded-md shadow-lg hidden lg:block"
+        className="xl:h-full h-[60%] rounded-md shadow-lg hidden lg:block self-start"
       />
     </div>
   );

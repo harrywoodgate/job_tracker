@@ -1,11 +1,11 @@
 export default function HomepageFooter() {
   return (
-    <div className="bg-white p-4 hidden sm:flex flex-col items-center">
-      <h2 className="text-lg text-sm text-center font-semibold">
-        Everything you need to take control of your job search
+    <div className="p-4 hidden sm:flex flex-col items-center mt-2">
+      <h2 className="text-3xl text-center font-semibold">
+        Your job search, <span className="text-blue-700">simplified</span>.
       </h2>
       <div className="flex sm:max-lg:grid grid-cols-2 mt-4 gap-x-6 gap-y-4 pb-4">
-        <div className="flex items-center gap-x-4">
+        <div className="flex items-center gap-x-4 bg-white p-6 shadow-md rounded-lg">
           <div className="bg-sky-100 w-fit h-fit p-2 flex items-center rounded-lg">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -23,8 +23,7 @@ export default function HomepageFooter() {
             </p>
           </div>
         </div>
-        <div className="w-[2px] self-stretch hidden lg:block bg-gray-100"></div>
-        <div className="flex items-center gap-x-4">
+        <div className="flex items-center gap-x-4 bg-white p-6 shadow-md rounded-lg">
           <div className="bg-emerald-100 w-fit h-fit p-2 flex items-center rounded-lg">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -42,8 +41,7 @@ export default function HomepageFooter() {
             </p>
           </div>
         </div>
-        <div className="w-[2px] self-stretch hidden lg:block bg-gray-100"></div>
-        <div className="flex items-center gap-x-4">
+        <div className="flex items-center gap-x-4 bg-white p-6 shadow-md rounded-lg">
           <div className="bg-orange-100 w-fit h-fit p-2 flex items-center rounded-lg">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -61,8 +59,7 @@ export default function HomepageFooter() {
             </p>
           </div>
         </div>
-        <div className="w-[2px] self-stretch hidden lg:block bg-gray-100"></div>
-        <div className="flex items-center gap-x-4">
+        <div className="flex items-center gap-x-4 bg-white p-6 shadow-md rounded-lg">
           <div className="bg-indigo-100 w-fit h-fit p-2 flex items-center rounded-lg">
             <svg
               xmlns="http://www.w3.org/2000/svg"
