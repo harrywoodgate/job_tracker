@@ -70,7 +70,7 @@ export default function ApplicationsColumn({
         className={
           mobileColumnActive === heading
             ? "flex flex-col gap-y-2 max-h-[394px] overflow-auto pt-6 transition-[max-height] duration-200"
-            : "md:flex flex-col gap-y-2 h-[394px] overflow-auto max-h-0 md:max-h-full"
+            : "md:flex flex-col gap-y-2 h-[clamp(394px,70vh,600px)] overflow-auto max-h-0 md:max-h-full"
         }
       >
         {applications &&
