@@ -18,16 +18,18 @@ export default function Dashboard() {
       <NavContext value={{user}}>
       <Nav/>
       </NavContext>
-      <Outlet
-        context={{
-          applicationHistory,
-          addApplication,
-          deleteApplication,
-          updateApplication,
-          user,
-          settingsDispatch,
-        }}
-      />
+      <div className="max-w-[1600px] min-h-svh w-full p-6 justify-self-center">
+        <Outlet
+          context={{
+            applicationHistory,
+            addApplication,
+            deleteApplication,
+            updateApplication,
+            user,
+            settingsDispatch,
+          }}
+        />
+      </div>
     </div>
   );
 }

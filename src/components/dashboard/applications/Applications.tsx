@@ -46,8 +46,8 @@ export default function Applications() {
   }
 
   return (
-    <div className="p-6 min-h-svh flex justify-center lg:col-span-1 col-span-2">
-      <div className="w-full max-w-[1500px] flex flex-col gap-y-8">
+    <div className="flex justify-center lg:col-span-1 col-span-2">
+      <div className="w-full flex flex-col gap-y-8">
         <ApplicationsHeader
           setFormActive={setFormActive}
           setFormType={setFormType}
