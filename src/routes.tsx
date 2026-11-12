@@ -10,7 +10,6 @@ import Settings from "./components/dashboard/settings/Settings.tsx";
 type route = {
   path: string;
   element: React.JSX.Element;
-  // might be a better way of doing this
   children?: { path: string; element: React.JSX.Element }[];
 };
 
