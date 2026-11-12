@@ -26,7 +26,7 @@ export default function SignupCard() {
 
   return (
     <div className="flex items-center w-full mt-6 md:mt-0 md:w-[45%] lg:w-[40%]">
-      <div className="bg-white lg:px-8 px-6 lg:py-10 py-6 text-black rounded-lg flex flex-col items-center gap-y-2 w-full">
+      <div className="bg-white lg:px-8 px-6 lg:py-12 py-6 text-black rounded-lg flex flex-col items-center gap-y-2 w-full">
         <h1 className="lg:text-2xl text-lg font-semibold">Create your account</h1>
         <p className="lg:text-sm text-xs">
           Already have an account?
