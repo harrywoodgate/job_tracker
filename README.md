@@ -44,6 +44,11 @@ Job Tracker is an App designed to help users keep track of their job application
 
 ## Screenshots
 
+![homepage_screenshot](./src/img/homepage_screenshot.png)
+![dashboard_screenshot](./src/img/dashboard_screenshot.png)
+![applications_screenshot](./src/img/applications_screenshot.png)
+![settings_screenshot](./src/img/settings_screenshot.png)
+
 ## Technologies Used
 
 **Frontend**
