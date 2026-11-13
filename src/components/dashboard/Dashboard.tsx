@@ -18,7 +18,7 @@ export default function Dashboard() {
       <NavContext value={{user}}>
       <Nav/>
       </NavContext>
-      <div className="max-w-[1600px] min-h-svh w-full p-6 justify-self-center">
+      <main className="max-w-[1600px] min-h-svh w-full p-6 justify-self-center">
         <Outlet
           context={{
             applicationHistory,
@@ -29,7 +29,7 @@ export default function Dashboard() {
             settingsDispatch,
           }}
         />
-      </div>
+      </main>
     </div>
   );
 }

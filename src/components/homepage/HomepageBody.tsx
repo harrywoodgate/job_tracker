@@ -3,7 +3,7 @@ import screenshot from "../../img/dashboard_screenshot.png";
 
 export default function HomepageBody() {
   return (
-    <div className="lg:grid grid-cols-[45%_55%] p-4 sm:p-6">
+    <main className="lg:grid grid-cols-[45%_55%] p-4 sm:p-6">
       <div className="flex flex-col gap-y-2 sm:gap-y-4">
         <div className="bg-sky-100 flex items-center gap-x-2 w-fit p-2 px-3 rounded-2xl">
           <svg
@@ -75,6 +75,6 @@ export default function HomepageBody() {
         alt="dashboard_screenshot"
         className="xl:h-full h-[60%] rounded-md shadow-lg hidden lg:block self-start"
       />
-    </div>
+    </main>
   );
 }

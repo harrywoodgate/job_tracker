@@ -1,6 +1,6 @@
 export default function HomepageFooter() {
   return (
-    <div className="p-4 hidden sm:flex flex-col items-center mt-2">
+    <footer className="p-4 hidden sm:flex flex-col items-center mt-2">
       <h2 className="text-3xl text-center font-semibold">
         Your job search, <span className="text-blue-700">simplified</span>.
       </h2>
@@ -78,6 +78,6 @@ export default function HomepageFooter() {
           </div>
         </div>
       </div>
-    </div>
+    </footer>
   );
 }
