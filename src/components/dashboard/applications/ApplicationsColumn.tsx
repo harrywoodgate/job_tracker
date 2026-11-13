@@ -27,7 +27,7 @@ export default function ApplicationsColumn({
     "bg-red-500",
   ];
   const count = applications.length;
-  const lowerCaseHeading = heading.toLowerCase() as applicationStatus
+  const lowerCaseHeading = heading.toLowerCase() as applicationStatus;
 
   return (
     <div
@@ -35,8 +35,8 @@ export default function ApplicationsColumn({
       onDragOver={(e) => e.preventDefault()}
       onDrop={(e) => {
         e.preventDefault();
-        handleDrop(heading.toLowerCase() as applicationStatus)}
-      }
+        handleDrop(heading.toLowerCase() as applicationStatus);
+      }}
     >
       <div className="flex flex-col gap-y-4 items-center">
         <div className="flex justify-between w-full items-center px-2">

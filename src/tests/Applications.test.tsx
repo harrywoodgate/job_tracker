@@ -160,7 +160,7 @@ describe("applications", () => {
       deleteApplication: mockDeleteApplication,
     });
     const newestFirst = await screen.findByText("Newest first");
-    await user.click(newestFirst)
+    await user.click(newestFirst);
     const applications = await screen.findAllByTestId("application");
     expect(applications[0]).toHaveTextContent("job two");
   });

@@ -8,5 +8,5 @@ export type formDispatchAction =
   | { type: "company"; value: string }
   | { type: "job_type"; value: string }
   | { type: "resetForm" }
-  | {type: "date"; value: string; status: string}
-  | {type: "editApplication"; value: application};
+  | { type: "date"; value: string; status: string }
+  | { type: "editApplication"; value: application };

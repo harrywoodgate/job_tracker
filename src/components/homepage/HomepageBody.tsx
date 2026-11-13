@@ -13,7 +13,9 @@ export default function HomepageBody() {
           >
             <path d="M16,6L18.29,8.29L13.41,13.17L9.41,9.17L2,16.59L3.41,18L9.41,12L13.41,16L19.71,9.71L22,12V6H16Z" />
           </svg>
-          <p className="sm:text-xs text-[10px] text-blue-700 font-semibold">Your job search, organised.</p>
+          <p className="sm:text-xs text-[10px] text-blue-700 font-semibold">
+            Your job search, organised.
+          </p>
         </div>
         <h1 className="sm:text-5xl text-2xl font-semibold leading-tight">
           Track applications.

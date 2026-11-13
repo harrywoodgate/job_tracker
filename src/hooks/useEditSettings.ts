@@ -25,7 +25,7 @@ export default function useEditSettings() {
             new_email: data.user.email,
             new_password: "",
             confirm_password: "",
-            created_at: data.user.created_at
+            created_at: data.user.created_at,
           },
         });
       }
@@ -55,21 +55,21 @@ export default function useEditSettings() {
       case "new_password": {
         return {
           ...state,
-          new_password: action.value
-        }
+          new_password: action.value,
+        };
       }
       case "confirm_password": {
         return {
           ...state,
-          confirm_password: action.value
-        }
+          confirm_password: action.value,
+        };
       }
       case "reset_passwords": {
         return {
           ...state,
           new_password: "",
           confirm_password: "",
-        }
+        };
       }
     }
   }

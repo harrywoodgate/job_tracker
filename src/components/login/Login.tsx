@@ -11,10 +11,12 @@ export default function Login() {
         </header>
         <main className="flex items-center justify-between h-full">
           <div className="flex-col justify-center hidden md:flex">
-            <h2 className="lg:text-7xl text-4xl font-semibold">Welcome <span className="text-[#02CEED]">back!</span></h2>
+            <h2 className="lg:text-7xl text-4xl font-semibold">
+              Welcome <span className="text-[#02CEED]">back!</span>
+            </h2>
             <p className="mt-2 lg:text-xl">
-              Sign in to continue tracking your job applications <br /> and career
-              progress
+              Sign in to continue tracking your job applications <br /> and
+              career progress
             </p>
           </div>
           <LoginCard />

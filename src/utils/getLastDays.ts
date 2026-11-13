@@ -8,5 +8,5 @@ export default function getLastDays(number: number) {
   weekEnd = weekEnd.toISOString();
   weekEnd = weekEnd.slice(0, 10);
 
-  return {weekStart, weekEnd}
+  return { weekStart, weekEnd };
 }

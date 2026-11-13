@@ -15,8 +15,8 @@ export default function Dashboard() {
 
   return (
     <div className="sm:grid grid-cols-[auto_1fr] bg-gray-100">
-      <NavContext value={{user}}>
-      <Nav/>
+      <NavContext value={{ user }}>
+        <Nav />
       </NavContext>
       <main className="max-w-[1600px] min-h-svh w-full p-6 justify-self-center">
         <Outlet

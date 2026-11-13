@@ -1,11 +1,9 @@
 import { supabase } from "../supabaseClient";
 import type { application } from "../types/application.ts";
 
-export default async function uploadApplication(
-  application: application,
-) {
+export default async function uploadApplication(application: application) {
   const user = (await supabase.auth.getUser()).data.user;
-  if (!user) return ("No current user");
+  if (!user) return "No current user";
   const { error } = await supabase.from("job_applications").insert({
     id: application.id,
     user_id: user.id,
@@ -21,6 +19,6 @@ export default async function uploadApplication(
   });
 
   if (error) {
-    return (error)
+    return error;
   }
 }

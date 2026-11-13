@@ -13,7 +13,9 @@ export default function Homepage() {
           <HomepageFooter />
           <HomepageCallToAction />
         </div>
-        <p className="flex justify-center sm:text-xs text-[10px] text-gray py-2">Created by @HarryWoodgate 2026</p>
+        <p className="flex justify-center sm:text-xs text-[10px] text-gray py-2">
+          Created by @HarryWoodgate 2026
+        </p>
       </div>
     </div>
   );

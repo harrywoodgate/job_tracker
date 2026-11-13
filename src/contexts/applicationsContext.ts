@@ -6,7 +6,7 @@ type applicationsContext = {
   setFormActive: React.Dispatch<React.SetStateAction<boolean>>;
   formDispatch: React.ActionDispatch<[action: formDispatchAction]>;
   setFormType: React.Dispatch<React.SetStateAction<string>>;
-  setDraggedTile: React.Dispatch<React.SetStateAction<application | null>>
+  setDraggedTile: React.Dispatch<React.SetStateAction<application | null>>;
 };
 
 export const ApplicationsContext = createContext<applicationsContext | null>(

@@ -17,7 +17,11 @@ export default function HomepageCallToAction() {
         className="bg-teal w-fit h-fit flex gap-x-2 items-center text-white px-4 py-3 font-semibold rounded-lg text-xs sm:text-base"
       >
         Get started for free
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="fill-white w-[25px]">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          className="fill-white w-[25px]"
+        >
           <path d="M14 16.94V12.94H5.08L5.05 10.93H14V6.94L19 11.94Z" />
         </svg>
       </Link>

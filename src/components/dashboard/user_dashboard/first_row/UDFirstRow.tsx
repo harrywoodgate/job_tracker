@@ -7,8 +7,7 @@ import useGetApplicationsData from "../../../../hooks/useGetApplicationsData";
 export default function UDFirstRow() {
   const { applicationHistory } = useOutletContext<outletContext>();
   const { seperatedApplications } = useSeperateApplications(applicationHistory);
-  const { getCurrentWeekCount } =
-    useGetApplicationsData(applicationHistory);
+  const { getCurrentWeekCount } = useGetApplicationsData(applicationHistory);
   const currentWeekCount = getCurrentWeekCount();
 
   return (
@@ -30,9 +29,7 @@ export default function UDFirstRow() {
           <p className="text-xs text-gray">
             <span
               className={
-                currentWeekCount.total > 0
-                  ? "text-green-700"
-                  : "text-red-500"
+                currentWeekCount.total > 0 ? "text-green-700" : "text-red-500"
               }
             >
               {currentWeekCount.total > 0 ? "\u2191 " : ""}

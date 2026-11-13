@@ -10,7 +10,7 @@ export default function NavSidebar({
   mobileNavActive: boolean;
   setMobileNavActive: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-  const [selected, setSelected] = useState("Dashboard")
+  const [selected, setSelected] = useState("Dashboard");
   const svgStyling: string = "fill-white w-[25px] pt-[1px]";
 
   return (

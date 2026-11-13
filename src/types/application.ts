@@ -2,7 +2,7 @@ import type { applicationStatus } from "./applicationStatus";
 
 export type application = {
   id: string;
-  user_id? : string;
+  user_id?: string;
   job_title: string;
   company: string;
   current_status: applicationStatus;

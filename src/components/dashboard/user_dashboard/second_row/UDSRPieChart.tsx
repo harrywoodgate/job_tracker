@@ -107,8 +107,12 @@ export default function UDSRPieChart() {
           />
           <div className="grid grid-cols-[3fr_1fr_1fr] w-full mt-2 text-sm">
             <p className="font-semibold">Total</p>
-            <p className="font-semibold justify-self-center sm:justify-self-start">{applicationHistory.length}</p>
-            <p className="text-gray justify-self-end sm:justify-self-start">100%</p>
+            <p className="font-semibold justify-self-center sm:justify-self-start">
+              {applicationHistory.length}
+            </p>
+            <p className="text-gray justify-self-end sm:justify-self-start">
+              100%
+            </p>
           </div>
         </div>
       </div>

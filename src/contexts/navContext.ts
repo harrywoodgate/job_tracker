@@ -2,7 +2,7 @@ import { createContext } from "react";
 import type { user } from "../types/user";
 
 export type navContext = {
-    user: user
-}
+  user: user;
+};
 
-export const NavContext = createContext<navContext | null>(null)
+export const NavContext = createContext<navContext | null>(null);

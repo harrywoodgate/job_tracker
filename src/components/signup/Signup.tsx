@@ -11,7 +11,9 @@ export default function Signup() {
         </header>
         <main className="flex justify-between h-full">
           <div className="flex flex-col justify-center hidden md:flex">
-            <h2 className="lg:text-7xl text-4xl font-semibold">Welcome<span className="text-[#02CEED]">!</span></h2>
+            <h2 className="lg:text-7xl text-4xl font-semibold">
+              Welcome<span className="text-[#02CEED]">!</span>
+            </h2>
             <p className="mt-2 lg:text-xl">
               Create your account to start your career journey today
             </p>

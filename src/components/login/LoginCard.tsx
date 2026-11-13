@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { supabase } from "../../supabaseClient";
 import { Link } from "react-router";
-import googleLogo from "../../img/google_logo.png"
+import googleLogo from "../../img/google_logo.png";
 
 export default function LoginCard() {
   const [email, setEmail] = useState("");
@@ -36,7 +36,9 @@ export default function LoginCard() {
   return (
     <div className="flex items-center w-full mt-6 md:mt-0 md:w-[45%] lg:w-[40%]">
       <div className="bg-white lg:px-8 px-6 lg:py-12 py-6 text-black rounded-lg flex flex-col items-center gap-y-2 w-full">
-        <h1 className="lg:text-2xl text-lg font-semibold">Sign in to your account</h1>
+        <h1 className="lg:text-2xl text-lg font-semibold">
+          Sign in to your account
+        </h1>
         <p className="lg:text-sm text-xs">
           Dont have an account?
           <Link to="/signup" className="text-teal ml-1 cursor-pointer">
@@ -95,7 +97,14 @@ export default function LoginCard() {
           </button>
         </form>
         <p className="text-sm text-gray">or</p>
-        <button onClick={loginWithGoogle} className="w-full text-sm lg:text-md flex items-center justify-center gap-x-3 border-1 border-black rounded-md p-2 cursor-pointer"> <img src={googleLogo} alt="" className="w-[20px] h-[20px]"/> Sign in with Google</button>
+        <button
+          onClick={loginWithGoogle}
+          className="w-full text-sm lg:text-md flex items-center justify-center gap-x-3 border-1 border-black rounded-md p-2 cursor-pointer"
+        >
+          {" "}
+          <img src={googleLogo} alt="" className="w-[20px] h-[20px]" /> Sign in
+          with Google
+        </button>
         <p className="text-xs text-gray text-center mt-4">
           By signing in you agree to our{" "}
           <span className="text-teal font-medium">Terms of Service</span>

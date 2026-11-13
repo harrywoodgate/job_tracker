@@ -24,11 +24,7 @@ export default function NavProfile() {
       <div ref={dropDownRef}>
         <NavProfileExpanded active={navProfileExpanded} />
 
-        <div
-          onClick={() =>
-            setNavProfileExpanded(!navProfileExpanded)
-          }
-        >
+        <div onClick={() => setNavProfileExpanded(!navProfileExpanded)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

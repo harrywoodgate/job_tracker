@@ -13,11 +13,18 @@ export default function UDTRRecentActivity() {
       <h2 className="font-semibold mb-4">Recent Activity</h2>
       <div className="flex flex-col sm:h-[196px] justify-center gap-y-1">
         {recentActivity.length === 0 && (
-          <p className="text-sm text-center text-gray">No recent activity <br /> Go to applications to add more!</p>
+          <p className="text-sm text-center text-gray">
+            No recent activity <br /> Go to applications to add more!
+          </p>
         )}
         {recentActivity.length > 0 &&
           recentActivity.map((application) => {
-            return <RecentActivityRow application={application} key={application.id}/>;
+            return (
+              <RecentActivityRow
+                application={application}
+                key={application.id}
+              />
+            );
           })}
       </div>
     </div>

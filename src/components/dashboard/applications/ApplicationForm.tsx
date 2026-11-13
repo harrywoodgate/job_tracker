@@ -168,8 +168,8 @@ export default function ApplicationForm({
                     : "p-1 rounded-md cursor-pointer text-blue-600 bg-blue-100 font-semibold px-4 py-2 text-xs"
                 }
                 onClick={(e) => {
-                  e.preventDefault()
-                  dispatch({ type: "current_status", value: "applied" })
+                  e.preventDefault();
+                  dispatch({ type: "current_status", value: "applied" });
                 }}
               >
                 Applied
@@ -181,8 +181,8 @@ export default function ApplicationForm({
                     : "p-1 rounded-md cursor-pointer text-teal-600 bg-teal-100 font-semibold px-4 py-2 text-xs"
                 }
                 onClick={(e) => {
-                  e.preventDefault()
-                  dispatch({ type: "current_status", value: "response" })
+                  e.preventDefault();
+                  dispatch({ type: "current_status", value: "response" });
                 }}
               >
                 Response
@@ -194,8 +194,8 @@ export default function ApplicationForm({
                     : "p-1 rounded-md cursor-pointer text-yellow-600 bg-yellow-100 font-semibold px-4 py-2 text-xs"
                 }
                 onClick={(e) => {
-                  e.preventDefault()
-                  dispatch({ type: "current_status", value: "interview" })
+                  e.preventDefault();
+                  dispatch({ type: "current_status", value: "interview" });
                 }}
               >
                 Interview
@@ -207,8 +207,8 @@ export default function ApplicationForm({
                     : "p-1 rounded-md cursor-pointer text-green-600 bg-green-100 font-semibold px-4 py-2 text-xs"
                 }
                 onClick={(e) => {
-                  e.preventDefault()
-                  dispatch({ type: "current_status", value: "offer" })
+                  e.preventDefault();
+                  dispatch({ type: "current_status", value: "offer" });
                 }}
               >
                 Offer
@@ -220,8 +220,8 @@ export default function ApplicationForm({
                     : "p-1 rounded-md cursor-pointer text-red-600 bg-red-100 font-semibold px-4 py-2 text-xs"
                 }
                 onClick={(e) => {
-                  e.preventDefault()
-                  dispatch({ type: "current_status", value: "rejected" })
+                  e.preventDefault();
+                  dispatch({ type: "current_status", value: "rejected" });
                 }}
               >
                 Rejected

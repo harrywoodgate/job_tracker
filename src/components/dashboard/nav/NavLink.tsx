@@ -20,8 +20,9 @@ export default function NavLink({
   return (
     <>
       <Link
-        onClick={() => {setMobileNavActive(false);
-          setSelected(linkText)
+        onClick={() => {
+          setMobileNavActive(false);
+          setSelected(linkText);
         }}
         to={linkUrl}
         className={
